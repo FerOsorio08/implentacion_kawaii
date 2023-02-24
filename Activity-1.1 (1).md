@@ -67,25 +67,43 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
 
 
     a. the depth of the tree
-
+    The depth of a vinary tree is 4 and the height is 5
     ``
 
     b. the ancestors of x18
+    The ancestors of node x18 are:
+    - x15
+    - x10
+    - x4
+    - x1
 
     ``
 
     c. the internal nodes of the tree
+    The internal nodes of the binary tree are:
+    - x1
+    - x2
+    - x3
+    - x4
+    - x5
+    - x7
+    - x13
+    - x10
+    - x15
 
     ``
 
     d. the length of the path from x3 to x14
+    The length of the path is 2
 
     ``
 
     e. the vertex that is the parent of x16
+    The parent vertex is x10
 
     ``
 
     f. the vertices children of x7
+    The children vertices of x7 are x13 and x14
 
     ``
