@@ -17,7 +17,15 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
 
     _**SOLUTION:**_
 
-    $P(X)= {\{P(Y) | V \cup W for W \in P(Y)\} \cup P(Y)}$
+    **Basis:**$\{ \empty \}$
+
+    **Recusrive step:**  
+    
+    $ X_0 = (\{ \})=\{\{\}\} \newline  X_1 = (\{ 1\}) = \{,\{\},\{ 1\}\}\newline  X_2 = (\{ 1,2\}) = \{,\{\},\{ 1\},\{2\},\{1,2\}\} $
+
+    **Closure:**
+
+    $$P(X)= {\{P(Y) | V \cup W for W \in P(Y)\} \cup P(Y)}$$
 
 
 
