@@ -3,6 +3,8 @@
 Reference for math symbols:
 https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
 
+
+
 ## Names:
 - Fernanda Osorio
 - Emilia Salazar
@@ -95,11 +97,10 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
     - x2
     - x3
     - x4
-    - x5
     - x7
-    - x13
     - x10
-    - x15
+
+
 
     ``
 
