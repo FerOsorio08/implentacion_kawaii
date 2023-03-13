@@ -31,19 +31,21 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
 
     b. How many strings of length 6 are there in $X^*$?
 
+    - aaaaaa
     - aaaabb
     - aabbbb
     - aabbaa
     - bbbbaa
     - bbaaaa
     - bbaabb
+    - bbbbbb
 
     c. List the strings in set $Y^*$ of length three or less
 
     
     #|string|#|string|#|string
     -|-|-|-|-|-
-    aa $\lambda$ || aab || aaab|| 
+    $\lambda$ b || aab || aaab|| 
     bb $\lambda$ || bbb || babb
 
 
