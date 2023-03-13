@@ -30,15 +30,31 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
     bb $\lambda$ || bbb || bbab
 
     b. How many strings of length 6 are there in $X^*$?
+    $X=\{aa, bb\}$
 
+<<<<<<< HEAD
+=======
+    $XX=$
+
+    $XXX=\{aa, bb\}\{aa, bb\}\{aa, bb\}$
+
+>>>>>>> f14d01f (num2)
     - aaaaaa
     - aaaabb
-    - aabbbb
     - aabbaa
-    - bbbbaa
+    - aabbbb
     - bbaaaa
     - bbaabb
+<<<<<<< HEAD
     - bbbbbb
+=======
+    - bbbbaa 
+    - bbbbbb
+
+    There are 8 stringth with length 6 in $X^*$.
+
+   
+>>>>>>> f14d01f (num2)
 
     c. List the strings in set $Y^*$ of length three or less
 
