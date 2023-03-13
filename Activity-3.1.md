@@ -45,7 +45,7 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
     - aabbbb
     - bbaaaa
     - bbaabb
-    - bbbbaa 
+    - bbbbaa
     - bbbbbb
 
     There are 8 stringth with length 6 in $X^*$.
