@@ -26,16 +26,25 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
 
     #|string|#|string|#|string
     -|-|-|-|-|-
-    1||2||3|
+    aa $\lambda$ || aab || aaab|| 
+    bb $\lambda$ || bbb || bbab
 
     b. How many strings of length 6 are there in $X^*$?
 
+    - aaaabb
+    - aabbbb
+    - aabbaa
+    - bbbbaa
+    - bbaaaa
+    - bbaabb
 
     c. List the strings in set $Y^*$ of length three or less
 
+    
     #|string|#|string|#|string
     -|-|-|-|-|-
-
+    aa $\lambda$ || aab || aaab|| 
+    bb $\lambda$ || bbb || babb
 
 
     d. List the strings in set $X^* Y^*$ of length four or less
