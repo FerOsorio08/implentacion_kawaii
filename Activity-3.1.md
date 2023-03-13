@@ -4,8 +4,8 @@ Reference for math symbols:
 https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
 
 ## Names:
-- name1
-- name2
+- Emilia Salazar Leipen
+- Fernanda Osorio
 
 
 ## Exercises:
