@@ -17,7 +17,16 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
     For example: $aab$, $bab$ and $aaaabbabababa$ are in the set,
     but $abb$, $aaab$ and $aa$ are not
 
-    _**SOLUTION:**_
+    
+    <span style="color:red;">_**SOLUTION:**_</span>
+
+    
+    **I. Basis:** $b \in S$
+
+    **II. Recursive Step**: If $u \in S$ then $uab \in S$. (According to "at least one $b$ and have an even number of $a$’s before the first $b$") 
+    If $ uaa \in S$ then $uaab \in S$
+
+    **III. Closure**: A string $u \in S$ only if it can be obtained from the basis using a finite number of applications of the recursive step.
 
 
 2. Let $X = \{aa, bb\}$ and $Y = \{\lambda, b, ab\}$.
@@ -63,14 +72,11 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
     bb || abb|| aabb ||
     bab ||  || ||
 
-  
-
-
     
 
     d. List the strings in set $X^* Y^*$ of length four or less
 
-
+    
 | X     | Y     |
 |-------|-------|
 |       | λ     |
@@ -125,7 +131,9 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
 5. Prove, using induction on the length of a string, that $(w^R)^R = w$ for all
    string $w \in \Sigma$
 
-    _**SOLUTION:**_
+    <span style="color:red;">_**SOLUTION:**_</span>
+
+    **I. Basis:**  
 
 
 
