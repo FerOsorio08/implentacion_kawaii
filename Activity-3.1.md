@@ -20,15 +20,14 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
     _**SOLUTION:**_
 
 
-
 2. Let $X = \{aa, bb\}$ and $Y = \{\lambda, b, ab\}$.
 
     a. List the strings in set $XY$
 
     #|string|#|string|#|string
     -|-|-|-|-|-
-    aa $\lambda$ || aab || aaab|| 
-    bb $\lambda$ || bbb || bbab
+    aa  || aab || aaab|| 
+    bb  || bbb || bbab
 
     b. How many strings of length 6 are there in $X^*$?
     
@@ -37,6 +36,8 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
     $XX=$
 
     $XXX=\{aa, bb\}\{aa, bb\}\{aa, bb\}$
+
+    
 
 
     - aaaaaa
@@ -47,6 +48,7 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
     - bbaabb
     - bbbbaa
     - bbbbbb
+    $$2^3=8$$
 
     There are 8 stringth with length 6 in $X^*$.
 
@@ -102,3 +104,7 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
    string $w \in \Sigma$
 
     _**SOLUTION:**_
+
+
+
+
