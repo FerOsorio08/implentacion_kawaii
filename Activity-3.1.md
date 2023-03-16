@@ -58,8 +58,8 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
     #|string|#|string|#|string
     -|-|-|-|-|-
     $\lambda$ || $\lambda$ b|| $\lambda$ ab|| 
-    b || b $\lambda$ || bab||
-    ab || ab $\lambda$ || abb ||
+    b || bab|| ||
+    ab ||abb  || ||
 
 
     d. List the strings in set $X^* Y^*$ of length four or less
