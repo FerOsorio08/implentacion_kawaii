@@ -63,12 +63,34 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
     bb || abb|| aabb ||
     bab ||  || ||
 
+  
+
+
     
 
     d. List the strings in set $X^* Y^*$ of length four or less
 
-    #|string|#|string|#|string
-    -|-|-|-|-|-
+
+| X     | Y     |
+|-------|-------|
+|       | λ     |
+| aa    | b     |
+| bb    | ab    |
+| aaaa  | bb    |
+| aabb  | abb   |
+| bbaa  | bab   |
+| bbbb  | aabb  |
+
+1. $\lambda$
+2. $aa$
+3. $aab$
+4. $aaab$
+5. $aabb$
+6. $bb$
+7. $bbb$
+8. $bbab$
+9. $bbbb$
+10. $b$
 
 
 
