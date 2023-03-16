@@ -60,8 +60,8 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
     #|string|#|string|#|string
     -|-|-|-|-|-
     $\lambda$ || $\lambda$ b|| $\lambda$ ab|| 
-    b || bab|| ||
-    ab ||abb  || ||
+    bb || abb|| aabb ||
+    bab ||  || ||
 
     
 
