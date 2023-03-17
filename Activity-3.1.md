@@ -77,7 +77,23 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
     d. List the strings in set $X^* Y^*$ of length four or less
 
     
+X|Y|
+-|-|
+$\lambda$|$\lambda$|
+aa|b
+bb|ab
+aabb|bb
+bbaa|bab
+aaaa|abb
+bbbb|abab
+| |bbb
+| |bbab
+| |babb
+| |bbbb
+| |abbb
 
+
+$X^* Y^*$
 
 
 
