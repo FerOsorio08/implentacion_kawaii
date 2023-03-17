@@ -133,7 +133,21 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
 
     <span style="color:red;">_**SOLUTION:**_</span>
 
-    **I. Basis:**  
+    **I. Basis:**  $ w = \lambda $ (empty string). Given that the reverse of an empty string is also an empty string, we have that $ (w^R)^R = (\lambda^R)^R = \lambda ^R  = \lambda = w$. (Hypothesis)
+
+    **II. Inductive Step:**  Assuming that the hypothesis holds for any string of lenght $ n $ or less, we have to prove that it holds for any string of lenght $ n+1 $.
+        i.e.  $(w^R)^R = w \Leftrightarrow |w| ≤ n$
+
+    In order to prove the hypothesis. Let $w = ax$ where $x \in \Sigma^*$ (including zero) is a string of lenght $n$ or less; and $a \in \Sigma$ represents a character. 
+
+    *Inductive Hypothesis:*  $(x^R)^R = x \\(\Leftrightarrow |x| ≤ n)$  
+
+    Using the induction hypothesis we can reverse the string $w$. 
+
+    $$ w^R = (xa)^R = a^R x^R = ax^R $$
+    $$ (w^R)^R = (ax^R)^R = (x^R)^R a^R = x a = w $$
+
+    Consequently proving our hypothesis and showing that $(w^R)^R = w (\Leftrightarrow |x| ≤ n)$ using the induction hypothesis.
 
 
 
