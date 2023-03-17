@@ -107,7 +107,26 @@ bbbb|abab
 
 
 $X^* Y^*$
-
+| # | String |
+|---|--------|
+| 1 | λ      |
+| 2 | b      |
+| 3 | ab     |
+| 4 | bab    |
+| 5 | abb    |
+| 6 | abab   |
+| 7 | babb   |
+| 8 | abbb   |
+| 9 | aa     |
+|10 | bb     |
+|11 | bbb    |
+|12 | bbab   |
+|13 | bbbb   |
+|14 | aab    |
+|15 | aaab   |
+|16 | aabb   |
+|17 | bbaa   |
+|18 | aaaa   |
 
 
 
