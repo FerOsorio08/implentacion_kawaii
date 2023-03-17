@@ -76,7 +76,20 @@ https://www.overleaf.com/learn/latex/List_of_Greek_letters_and_math_symbols
 
     d. List the strings in set $X^* Y^*$ of length four or less
 
-    
+    $ xx = \{ aa, bb, aaaa, bbbb, aabb, bbaa \} $
+
+    The sets that will be taken into consideration are:
+
+    $ = \{ aa, bb, aaaa, bbbb, aabb, bbaa \} $
+
+   $ yyyy =  \newline \{ \lambda , b, ab \} \newline \{ \lambda , b, ab \} \newline \{ \lambda , b, ab \} \newline \{ \lambda , b, ab \} \newline  $ 
+
+   $ = \{ \lambda , b, ab, bb, bab, abb, abab, bbb, bbab, bbabab, abbb, abbab, ababab, bbbb, babb \}$
+
+   The sets that will be taken into consideration are:
+
+   $ = \{ \lambda, b, ab, bb, bab, abb, abab, bbb, bbab, abbb, bbbb, babb \}$
+
 X|Y|
 -|-|
 $\lambda$|$\lambda$|
