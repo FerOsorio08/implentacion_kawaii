@@ -140,7 +140,7 @@ $X^* Y^*$
 **II. Recursive Step**:
 If $u \in L$ then $aub \in L$ and $aub^2 \in L$
 
-If the string u belongs in L, then aub satisfies the condition of the set, and aub^2 also satisfies the condition of the set because while keeping the i constant, the j is doubled, stisfying the condition that the number of b´s will not be more than twice the number of a´s.
+If the string u belongs in L, then aub satisfies the condition of the set, and $aub^2$ also satisfies the condition of the set because while keeping the i constant, the j is doubled, stisfying the condition that the number of b´s will not be more than twice the number of a´s.
 
   **III. Closure**: A string $u \in L$ only if it can be obtained from the basis using a finite number of applications of the recursive step.
 
