@@ -1,21 +1,4 @@
 
-#|
-Implementation of a Deterministic Finite Automaton (DFA)
-A function will receive the definition of a DFA and a string,
-and return whether the string belongs in the language
-A DFA is defined as a state machine, with 3 elements:
-- Transition function
-- Initial state
-- List of acceptable states
-The DFA in this file is used to identify valid arithmetic expressions
-Examples:
-> (evaluate-dfa (dfa delta-arithmetic 'start '(int float exp)) "-234.56")
-'(float exp)
-> (arithmetic-lexer "45.3 - +34 / none")
-'(var spa)
-Gilberto Echeverria
-2023-03-30
-|#
 
 #lang racket
 
@@ -26,8 +9,11 @@ Gilberto Echeverria
 ; Declare the structure that describes a DFA
 (struct dfa (func initial accept))
 
+
 (define (arithmetic-lexer strng)
-  (evaluate-dfa (dfa delta-arithmetic 'start '(int float exp var spa op com)) strng))
+  (trace evaluate-dfa)
+  (evaluate-dfa (dfa delta-arithmetic 'start '(int float exp var spa op com lparen rparen)) strng))
+
 
 
 (define (evaluate-dfa dfa-to-evaluate strng)
@@ -65,13 +51,17 @@ Gilberto Echeverria
   Accept states: int float exp "
   (case state
     ['start (cond
-             [(char-numeric? char) (values 'int #f)]
-              [(or (eq? char #\+) (eq? char #\-)) (values 'sign #f)]
-              [(char-alphabetic? char)(values 'var #f)]
-              [(eq? char #\/) (values 'slash #f)]
-              [(eq? char #\_)(values 'var #f)]
-              [(eq? char #\;) (values 'comment #f)]
-              [else (values 'inv #f )])]
+         [(char-numeric? char) (values 'int #f)]
+         [(or (eq? char #\+) (eq? char #\-)) (values 'sign #f)]
+         [(char-alphabetic? char)(values 'var #f)]
+         [(eq? char #\/) (values 'slash #f)]
+         [(eq? char #\_)(values 'var #f)]
+         [(eq? char #\;) (values 'com #f)]
+         [(eq? char #\() (values 'spa 'lparen)] 
+         [(eq? char #\)) (values 'spa 'rparen)] 
+
+         [else (values 'inv #f)])]
+
         
 
     ['sign (cond
@@ -84,19 +74,34 @@ Gilberto Echeverria
             [(or (eq? char #\e) (eq? char #\E))  (values 'e #f)]
             [(char-operator? char) (values 'op 'int)]
             [(eq? char #\space) (values 'spa 'int)]
+            [(eq? char #\() (values 'lparen 'int)]
+            [(eq? char #\)) (values 'rparen 'int)]
             [else (values 'inv #f )])]
 
     ['dot (cond
             [(char-numeric? char)  (values 'float #f)]
             [else (values 'inv #f )])]
 
+    ;;; ['float (cond
+    ;;;           [(char-numeric? char) (values 'float #f)]
+    ;;;           [(or (eq? char #\e) (eq? char #\E)) (values 'e #f)]
+    ;;;           [(char-operator? char) (values 'op 'float )]
+    ;;;           [(and (eq? char #\\) (eq? (cadr char) #\;)) (values 'com #f)]
+    ;;;           [(eq? char #\space) (values 'spa 'float)]
+    ;;;           [(eq? char #\() (values 'lparen 'float)]
+    ;;;           [(eq? char #\)) (values 'rparen 'float)]
+    ;;;           [else (values 'inv #f )])]
+    
     ['float (cond
-              [(char-numeric? char) (values 'float #f)]
-              [(or (eq? char #\e) (eq? char #\E)) (values 'e #f)]
-              [(char-operator? char) (values 'op 'float )]
-              [(and (eq? char #\\) (eq? (cadr char) #\;)) (values 'com #f)]
-              [(eq? char #\space) (values 'spa 'float)]
-              [else (values 'inv #f )])]
+          [(char-numeric? char) (values 'float #f)]
+          [(or (eq? char #\e) (eq? char #\E)) (values 'e #f)]
+          [(char-operator? char) (values 'op 'float )]
+          [(eq? char #\;) (values 'com #f)]
+          [(eq? char #\() (values 'lparen 'float)]
+          [(eq? char #\)) (values 'rparen 'float)]
+          [else (values 'inv #f )])]
+
+
 
     ['e (cond
           [(char-numeric? char) (values 'exp #f)]
@@ -111,6 +116,8 @@ Gilberto Echeverria
             [(char-numeric? char) (values 'exp #f)]
             [(char-operator? char) (values 'op 'exp)]
             [(eq? char #\space) (values 'spa 'exp)]
+            [(eq? char #\() (values 'lparen 'exp)]
+            [(eq? char #\)) (values 'rparen 'exp)]
             [else (values 'inv #f )])]
 
     ['var (cond
@@ -119,37 +126,70 @@ Gilberto Echeverria
             [(eq? char #\_) (values 'var #f)]
             [(char-operator? char) (values 'op 'var)]
             [(eq? char #\space) (values 'spa 'var)]
+            [(eq? char #\() (values 'lparen 'var)]
+            [(eq? char #\)) (values 'rparen 'var)]
             [else (values 'inv #f )])]
 
-        ['op (cond
+    ;;;     ['op (cond
+    ;;;        [(char-numeric? char) (values 'int 'op)]
+    ;;;        [(or (eq? char #\+) (eq? char #\-)) (values 'sign 'op)]
+    ;;;        [(char-alphabetic? char) (values 'var 'op)]
+    ;;;        [(eq? char #\_) (values 'var 'op)]
+    ;;;        [(eq? char #\space) (values 'op_spa 'op)]
+    ;;;        [(eq? char #\() (values 'lparen 'op)]
+    ;;;        [(eq? char #\)) (values 'rparen 'op)]
+    ;;;        [else (values 'inv #f)])]
+
+    ;;; ['spa (cond
+    ;;;         [(char-operator? char) (values 'op #f )]
+    ;;;         [(eq? char #\space) (values 'spa #f )]
+    ;;;         [(eq? char #\() (values 'lparen #f )]
+    ;;;         [(eq? char #\)) (values 'rparen #f )]
+    ;;;         [else (values 'inv #f )])]
+
+    ;;; ['op_spa (cond
+    ;;;         [(char-numeric? char) (values 'int #f )]
+    ;;;         [(or (eq? char #\+) (eq? char #\-)) (values 'sign #f )]
+    ;;;         [(char-alphabetic? char) (values 'var #f )]
+    ;;;         [(eq? char #\_) (values 'var #f )]
+    ;;;         [(eq? char #\space) (values 'op_spa #f )]
+    ;;;         [else (values 'inv #f )])]
+
+      ['op (cond
            [(char-numeric? char) (values 'int 'op)]
            [(or (eq? char #\+) (eq? char #\-)) (values 'sign 'op)]
            [(char-alphabetic? char) (values 'var 'op)]
            [(eq? char #\_) (values 'var 'op)]
-           [(eq? char #\space) (values 'op_spa 'op)]
+           [(eq? char #\space) (values 'spa 'op)] ; Return 'spa' instead of 'op_spa'
+           [(eq? char #\() (values 'lparen 'op)]
+           [(eq? char #\)) (values 'rparen 'op)]
            [else (values 'inv #f)])]
 
     ['spa (cond
-            [(char-operator? char) (values 'op #f )]
-            [(eq? char #\space) (values 'spa #f )]
-            [else (values 'inv #f )])]
+            [(char-operator? char) (values 'op 'spa)] ; Return 'op' and 'spa'
+            [(eq? char #\space) (values 'spa 'spa)] ; Return 'spa' and 'spa'
+            [(eq? char #\() (values 'lparen 'spa)] ; Return 'lparen' and 'spa'
+            [(eq? char #\)) (values 'rparen 'spa)] ; Return 'rparen' and 'spa'
+            [else (values 'inv #f)])]
 
     ['op_spa (cond
-            [(char-numeric? char) (values 'int #f )]
-            [(or (eq? char #\+) (eq? char #\-)) (values 'sign #f )]
-            [(char-alphabetic? char) (values 'var #f )]
-            [(eq? char #\_) (values 'var #f )]
-            [(eq? char #\space) (values 'op_spa #f )]
-            [else (values 'inv #f )])]
+            [(char-numeric? char) (values 'int 'spa)] ; Return 'int' and 'spa'
+            [(or (eq? char #\+) (eq? char #\-)) (values 'sign 'spa)] ; Return 'sign' and 'spa'
+            [(char-alphabetic? char) (values 'var 'spa)] ; Return 'var' and 'spa'
+            [(eq? char #\_) (values 'var 'spa)] ; Return 'var' and 'spa'
+            [(eq? char #\space) (values 'spa 'spa)] ; Return 'spa' and 'spa'
+            [else (values 'inv #f)])]
     
     ['slash (cond
           [(eq? char #\/) (values 'com #f)]
           [else (values 'inv #f)])]
     
+    ['com (cond
+        [(eq? char #\newline) (values 'start 'com)]
+        [else (values 'com #f)])]
     
-    ['comment (cond
-                [(eq? char #\newline) (values 'start 'comment)]
-                [else (values 'comment #f)])]
+    
+    
 
 ))
 
@@ -157,10 +197,5 @@ Gilberto Echeverria
 
 
 
-
-
-
-(define result (arithmetic-lexer "d = a ^ b + 4 + 10 / 9"))
-(displayln result)
-
+(displayln (arithmetic-lexer "d = a ^ b + 4 + 10 / 9 ;This is a comment (3 + 5)"))
 
