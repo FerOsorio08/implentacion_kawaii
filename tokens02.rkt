@@ -31,7 +31,7 @@ Gilberto Echeverria
 
 (define (evaluate-dfa dfa-to-evaluate strng)
   " This function will verify if a string is acceptable by a DFA "
-  (let loop
+  (trace-let loop
     ([chars (string->list strng)]
      [state (dfa-initial dfa-to-evaluate)]
      [tokens '()]
@@ -142,6 +142,8 @@ Gilberto Echeverria
             [(char-alphabetic? char) (values 'var #f )]
             [(eq? char #\_) (values 'var #f )]
             [(eq? char #\space) (values 'op_spa #f )]
+            [(eq? char #\( ) (values 'op_par #f )]
+            [(eq? char #\) ) (values 'close_par #f )]
             ;;; [(eq? char #\( ) (values 'op_paren #f )]
             [else (values 'inv #f )])]
 
@@ -152,33 +154,37 @@ Gilberto Echeverria
 
     ['comment (cond
                 [(eq? char #\newline) (values 'start 'comment)]
-                [else (values 'comment #f)])]
+                [(char-numeric? char) (values 'int #f )]
+                ;;; [else (values 'comment #f)])]
+                [else (values 'inv #f)])]
     
     ;;; ['open-paren (cond
     ;;;             [(eq? char #\)) (values 'close-paren #t)
     ;;;             [else (values 'inv #f)]])]
 
     ['op_par (cond
-                [(eq? char #\() (values 'start 'op-paren)]
-                [(or (eq? char #\+) (eq? char #\-)) (values 'sign #f)]
-                [(eq? char #\space) (values 'op_spa #f)]
-                [(char-numeric? char) (values 'int #f)]
-                [(char-alphabetic? char) (values 'var #f)]
-                [(eq? char #\_) (values 'var #f)]
-                [else (values 'inv #f)])]
+                [(eq? char #\() (values 'start 'op-par)]
+                [(or (eq? char #\+) (eq? char #\-)) (values 'sign 'op-par)]
+                [(char-numeric? char) (values 'int 'op-par)]
+                [(char-alphabetic? char) (values 'var 'op-par)]
+                [(eq? char #\space) (values 'op_spa 'op-par)]
+                [(eq? char #\_) (values 'var 'op-par)]
+                [else (values 'inv 'op-par)])]
 
     ['close_par (cond
-                [(eq? char #\) ) (values 'start' 'close_par #f)]
-                [else (values 'inv #f)])]
+                [(eq? char #\) ) (values 'close_par 'close_par)]
+                ;;; [(or (eq? char #\+) (eq? char #\-)) (values 'sign 'close_par)]
+                [(char-numeric? char) (values 'int 'close_par)]
+                [(char-alphabetic? char) (values 'var 'close_par)]
+                [(char-operator? char) (values 'op 'close_par)]
+                [(eq? char #\space) (values 'op_spa 'close_par)]
+                [(eq? char #\_) (values 'var 'close_par)]
+                [(eq? char #\( ) (values 'op_par 'close_par)]
+                [else (values 'inv 'close_par)])]
 
 ))
 
 
 
-
-
-
-
-
-(define result (arithmetic-lexer " d ;= a ^ b + 4 + 10 / 9"))
+(define result (arithmetic-lexer "( D ) = a ^ b + 4 + 10 / 9 "))
 (displayln result)
