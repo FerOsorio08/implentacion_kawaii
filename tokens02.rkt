@@ -25,6 +25,8 @@ Gilberto Echeverria
 ; Declare the structure that describes a DFA
 (struct dfa (func initial accept))
 
+
+; This is a function definition in Racket that takes a string as input.
 (define (arithmetic-lexer strng)
   (evaluate-dfa (dfa delta-arithmetic 'start '(int float exp var spa op com)) strng))
 
@@ -163,6 +165,7 @@ Gilberto Echeverria
     ;;;             [(eq? char #\)) (values 'close-paren #t)
     ;;;             [else (values 'inv #f)]])]
 
+    ; If the current symbol represents an opening parenthesis, we add it to the tokens list
     ['op_par (cond
                 [(eq? char #\() (values 'start 'op_par)]
                 [(or (eq? char #\+) (eq? char #\-)) (values 'sign 'op_par)]
@@ -173,7 +176,8 @@ Gilberto Echeverria
                 [(eq? char #\_) (values 'var 'op_par)]
                 [(eq? char #\( ) (values 'op_par 'op_par)]
                 [else (values 'inv 'op-par)])]
-
+                
+    ; If the current symbol represents a closing parenthesis, we update the counter and add its token to the list.
     ['close_par (cond
                 [(eq? char #\) ) (values 'close_par 'close_par)]
                 ;;; [(or (eq? char #\+) (eq? char #\-)) (values 'sign 'close_par)]
