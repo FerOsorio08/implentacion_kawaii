@@ -25,7 +25,7 @@ En esta actividad deberás hacer un programa que reciba como entrada un archivo 
 
 De esta manera inmediatamente se ejecutará el programa y el resultado de la ejecución se mostrará en la terminal. 
 
-- Para modificar el archivo de entrada se debe modificar el parametro de tipo 'string' que se encuentra en la linea 184 del archivo 'tokens02.rkt'.
+- Para modificar el archivo de entrada se debe modificar el parametro de tipo 'string' que se encuentra en la linea 192 del archivo 'tokens02.rkt'.
 
 La salida del programa se muestra a continuación:
 
@@ -33,3 +33,7 @@ La salida del programa se muestra a continuación:
 ```(define result (arithmetic-lexer "( D = a ^ b + 4 + 10 / 9 ")) (displayln result))```
 
 ```((op-par . () (var . D) (op . =) (var . a) (op . ^) (var . b) (op . +) (int . 4) (op . +) (int . 10) (op . /) (int . 9) (spa . ))) ```
+
+```(define result (arithmetic-lexer ")( D = ( a ^ B + 4 + 10 / 9 "))```
+
+```((close_par . )) (op_par . ) (var . D) (op . =) (op_par . () (var . a) (op . ^) (var . B) (op . +) (int . 4) (op . +) (int . 10) (op . /) (int . 9) (spa . ))```

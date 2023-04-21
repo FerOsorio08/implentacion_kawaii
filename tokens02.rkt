@@ -31,7 +31,7 @@ Gilberto Echeverria
 
 (define (evaluate-dfa dfa-to-evaluate strng)
   " This function will verify if a string is acceptable by a DFA "
-  (trace-let loop
+  (let loop
     ([chars (string->list strng)]
      [state (dfa-initial dfa-to-evaluate)]
      [tokens '()]
@@ -189,5 +189,5 @@ Gilberto Echeverria
 
 
 
-(define result (arithmetic-lexer ")( D = ( a ^ b + 4 + 10 / 9 "))
+(define result (arithmetic-lexer ")( D = ( a ^ B + 4 + 10 / 9 "))
 (displayln result)
