@@ -1,0 +1,54 @@
+stateDiagram
+   direction TB
+   classDef deny fill:#FF0000, color:white ,font-weight:bold,stroke-width:2px,stroke:green
+   classDef start fill:#0000FF, color:white ,font-weight:bold,stroke-width:2px,stroke:green
+   classDef accept fill:#55FF33, color:black ,font-weight:bold,stroke-width:2px,stroke:green
+    Start--> sign: +|-
+    Start--> int: digit
+    sign--> int: digit
+    int--> int: digit
+    int-->dot : dot 
+    dot--> float: digit
+    float--> float: digit
+    float--> space: space
+    float--> op: +|-|*|/| =
+    float-->e: e|E
+    space--> space: space
+    int--> op: +|-|*|/| =
+    op-->sign: +|-
+    op-->int: digit
+    op-->op_spa:space
+    op-->var: letter|_|digit|_|letter|
+    op_spa-->op_spa: space
+    op_spa-->var: letter|_|digit|_|letter|
+    op_spa-->int: digit
+    op_spa-->sign
+    var-->var: letter|_|digit|_|letter|
+    var-->space: space
+    var-->op: +|-|*|/| =
+    int-->e: e|E
+    e-->e_sign: +|-
+    e-->exp: digit
+    e_sign-->exp: digit | space
+    exp-->exp: digit
+    exp-->space: space
+    exp-->op: +|-|*|/| =
+
+    class Start start
+    
+    class int accept
+    class var accept
+    class space accept
+    class exp accept
+    class float accept
+
+    class sign deny
+    class dot deny
+    class e deny
+    class e_sign deny
+    class op deny
+    class op_spa deny
+
+
+    
+
