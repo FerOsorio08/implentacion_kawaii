@@ -142,6 +142,7 @@ Gilberto Echeverria
             [(char-alphabetic? char) (values 'var #f )]
             [(eq? char #\_) (values 'var #f )]
             [(eq? char #\space) (values 'op_spa #f )]
+            
             [(eq? char #\( ) (values 'op_par #f )]
             [(eq? char #\) ) (values 'close_par #f )]
             ;;; [(eq? char #\( ) (values 'op_paren #f )]
@@ -190,4 +191,19 @@ Gilberto Echeverria
 
 
 (define result (arithmetic-lexer ")( D = ( a ^ B + 4 + 10 / 9 "))
+(define result01 (arithmetic-lexer "2"))
+(define result02 (arithmetic-lexer "97 /6 = 2 + 1"))
+(define result03 (arithmetic-lexer "5.23"))
+(define result04 (arithmetic-lexer "2 + 1"))
+(define result05 (arithmetic-lexer "5.2+3.7"))
+(define result06 (arithmetic-lexer "data"))
+(define result07 (arithmetic-lexer "one+two"))
+
 (displayln result)
+(displayln result01)
+(displayln result02)
+(displayln result03)
+(displayln result04)
+(displayln result05)
+(displayln result06)
+(displayln result07)

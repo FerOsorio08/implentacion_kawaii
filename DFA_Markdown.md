@@ -16,7 +16,17 @@ En esta actividad deberás hacer un programa que reciba como entrada un archivo 
 
 ## Solución:
 <span style="color:red;">SOLUTION:</span>
-- Para correr el programa se debe ejecutar el archivo 'tokens02.rk' desde la terminal con el comando: 
+Esta solución fue implementada en el lenguage de programación Racket. El automata que resuelve el problema se encuentra en el archivo: diagrama3.2.mmd
+Para poder correrlo es necesrio tener instaladas las extensiones:
+- Racket
+- DrRacket
+- Magic Racket
+- Mermaid Editor (para visualizar el diagrama)
+- Mermaid Preview (para visualizar el diagrama)
+- Mermaind Markdown Syntax Highlighting (para visualizar el diagrama)
+
+
+Para correr el programa se debe ejecutar el archivo 'tokens02.rk' desde la terminal con el comando: 
 
 
 ```Racket -it tokens02.rkt ```
@@ -33,6 +43,8 @@ La salida del programa se muestra a continuación:
 ```(define result (arithmetic-lexer "( D = a ^ b + 4 + 10 / 9 ")) (displayln result))```
 
 ```((op-par . () (var . D) (op . =) (var . a) (op . ^) (var . b) (op . +) (int . 4) (op . +) (int . 10) (op . /) (int . 9) (spa . ))) ```
+
+Otro ejemplo: 
 
 ```(define result (arithmetic-lexer ")( D = ( a ^ B + 4 + 10 / 9 "))```
 
