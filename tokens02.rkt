@@ -163,12 +163,14 @@ Gilberto Echeverria
     ;;;             [else (values 'inv #f)]])]
 
     ['op_par (cond
-                [(eq? char #\() (values 'start 'op-par)]
-                [(or (eq? char #\+) (eq? char #\-)) (values 'sign 'op-par)]
-                [(char-numeric? char) (values 'int 'op-par)]
-                [(char-alphabetic? char) (values 'var 'op-par)]
-                [(eq? char #\space) (values 'op_spa 'op-par)]
-                [(eq? char #\_) (values 'var 'op-par)]
+                [(eq? char #\() (values 'start 'op_par)]
+                [(or (eq? char #\+) (eq? char #\-)) (values 'sign 'op_par)]
+                [(char-operator? char) (values 'op 'op_par)]
+                [(char-numeric? char) (values 'int 'op_par)]
+                [(char-alphabetic? char) (values 'var 'op_par)]
+                [(eq? char #\space) (values 'op_spa 'op_par)]
+                [(eq? char #\_) (values 'var 'op_par)]
+                [(eq? char #\( ) (values 'op_par 'op_par)]
                 [else (values 'inv 'op-par)])]
 
     ['close_par (cond
@@ -180,11 +182,12 @@ Gilberto Echeverria
                 [(eq? char #\space) (values 'op_spa 'close_par)]
                 [(eq? char #\_) (values 'var 'close_par)]
                 [(eq? char #\( ) (values 'op_par 'close_par)]
-                [else (values 'inv 'close_par)])]
+                ;;; [else (values 'inv 'close_par)])]
+                [else (values 'inv #f)])]
 
 ))
 
 
 
-(define result (arithmetic-lexer "( D ) = a ^ b + 4 + 10 / 9 "))
+(define result (arithmetic-lexer ")( D = ( a ^ b + 4 + 10 / 9 "))
 (displayln result)
