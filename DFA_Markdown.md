@@ -62,15 +62,15 @@ Para definir la dirección del diagrama (de arriba hacia abajo) usamos:
 
 Para definir los colores  de las clase: "Start", "accept" y "denay",  usariamos las siguientes lineas de codigo: 
 
-- Para la clase denay:
+- Definimos el color de la clase denay:
 
 ```classDef deny fill:#FF0000, color:white ,font-weight:bold,stroke-width:2px,stroke:green ```
 
-- Para la clase start:
+- Definimos el color de la clase start:
 
 ```classDef start fill:#0000FF, color:white ,font-weight:bold,stroke-width:2px,stroke:green ```
 
-- Para la clase accept:
+- Definimos el color de la clase accept:
 
 ```classDef accept fill:#55FF33, color:black ,font-weight:bold,stroke-width:2px,stroke:green  ```
 
@@ -210,17 +210,26 @@ Para definir los colores para el inicio del diagrama:
 Para definir los colores en las estados aceptados : 
 
 ```class int accept ```
+
 ```class var accept ```
+
 ```class space accept ```
+
 ```class exp accept ```
+
 ```class float accept ```
 
 Para definir los colores en los estados declinados: 
 
 ```class sign deny ```
+
 ```class dot deny ```
+
 ```class e deny ```
+
 ```class e_sign deny ```
+
 ```class op deny ```
+
 ```class op_spa deny ```
 
