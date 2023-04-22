@@ -176,7 +176,7 @@ Gilberto Echeverria
                 [(eq? char #\_) (values 'var 'op_par)]
                 [(eq? char #\( ) (values 'op_par 'op_par)]
                 [else (values 'inv 'op-par)])]
-                
+
     ; If the current symbol represents a closing parenthesis, we update the counter and add its token to the list.
     ['close_par (cond
                 [(eq? char #\) ) (values 'close_par 'close_par)]
@@ -190,9 +190,49 @@ Gilberto Echeverria
                 ;;; [else (values 'inv 'close_par)])]
                 [else (values 'inv #f)])]
 
-))
+    
+
+)
+
+        ;;; (define (display-tokens lst)
+        ;;; (cond
+        ;;;     [(null? lst) 'done]
+        ;;;     [else 
+        ;;;     (let ([token (car lst)]
+        ;;;         [rest (cdr lst)])
+        ;;;     (display-token token)
+        ;;;     (display-tokens rest))]))
+
+        ;;; (define (display-token token)
+        ;;; (let ([tipo (get-token-type token)])
+        ;;;     (display (token->string token))
+        ;;;     (display (make-string (- 15 (string-length (token->string token))) #\space))
+        ;;;     (display tipo)
+        ;;;     (newline)))
+
+        ;;; (define (get-token-type token)
+        ;;; (cond
+        ;;;     [(eq? (token-type token) 'int) "Entero"]
+        ;;;     [(eq? (token-type token) 'var) "Variable"]
+        ;;;     [(eq? (token-type token) 'sign) "Operador"]
+        ;;;     [(eq? (token-type token) 'dot) "Punto"]
+        ;;;     [(eq? (token-type token) 'float) "Float"]
+        ;;;     [(eq? (token-type token) 'slash) "División"]
+        ;;;     [(eq? (token-type token) 'e) "Real"]
+        ;;;     [(eq? (token-type token) 'e_sign) "Real Signo"]
+        ;;;     [(eq? (token-type token) 'exp) "Exponencial"]
+        ;;;     [(eq? (token-type token) 'open-pa) "Paréntesis de apertura"]
+        ;;;     [(eq? (token-type token) 'close-par) "Paréntesis de cierre"]
+        ;;;     [(eq? (token-type token) 'equal) "Asignación"]
+        ;;;     [(eq? (token-type token) 'comment) "Comentario"]
+        ;;;     [(eq? (token-type token) 'spa) "Espacio"]
+        ;;;     [(eq? (token-type token) 'spa) "Espacio"]
+        ;;;     [(eq? (token-type token) 'inv) "Token inválido"]
+        ;;;     [else "Tipo desconocido"]))
+)
 
 
+;;; (display-tokens result)
 
 (define result (arithmetic-lexer ")( D = ( a ^ B + 4 + 10 / 9 "))
 (define result01 (arithmetic-lexer "2"))
@@ -202,6 +242,8 @@ Gilberto Echeverria
 (define result05 (arithmetic-lexer "5.2+3.7"))
 (define result06 (arithmetic-lexer "data"))
 (define result07 (arithmetic-lexer "one+two"))
+
+
 
 (displayln result)
 (displayln result01)
