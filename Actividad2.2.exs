@@ -85,9 +85,10 @@ defp do_prime_factors(number, div, list) when rem(number, div) != 0,
 
 def deep_reverse(list), do: do_deep_reverse(list, [])
 
-defp do_deep_reverse([], res), do: Enum.reverse(res)
-defp do_deep_reverse([head | tail], res), do: do_deep_reverse(tail, [Enum.reverse(head) | res])
-end
+defp do_deep_reverse([], res), do: res
+defp do_deep_reverse([head | tail], res) when is_list(head), do: do_deep_reverse(tail, [Enum.reverse(head) | res])
+defp do_deep_reverse([head | tail], res), do: do_deep_reverse(tail, [head | res])
+
 
 
 
