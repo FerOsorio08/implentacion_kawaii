@@ -30,19 +30,17 @@ defmodule Hw.Ariel2 do
   def rotate_left(n, list),
       do: do_rotate_left(n, list)
 
-  def rotate_left(n, list) when n == 0,
-    do: list
+  defp do_rotate_left(0, list),
+     do: list
 
-  defp do_rotate_left(n, [_head | tail]),
-    do: do_rotate_left(n-1, tail ++ [_head])
+  defp do_rotate_left(n, [head | tail]),
+    do: do_rotate_left(n-1, tail ++ [head])
+
 
 
   #4. La funci ́on prime-factors toma un nu ́mero entero n como entrada (n ¿ 0) y devuelve una lista que contiene los factores primos de n en orden ascendente. Los factores primos son los nu ́meros primos que dividen a un nu ́mero de manera exacta. Si se multiplican todos los factores primos se obtiene el nu ́mero original.
 def prime_factors(number),
   do: do_prime_factors(number, 2, [])
-
-def prime_factors(number) when number == 0,
-  do: 0
 
 defp do_prime_factors(number, div, list) when div * div > number,
   do: list ++ [number]
@@ -92,6 +90,5 @@ defp do_deep_reverse([head | tail], res), do: do_deep_reverse(tail, [head | res]
 
 
 
-#Ejercico7 La funci ́on insert-anywhere toma dos entradas: un objeto x y una lista lst. Devuelve una nueva lista con todas las formas posibles en que se puede insertar x en cada posici ́on de lst.
-def insert_anywhere(element, list),
-  do: do_insert_anywhere(element, list, pos)
+
+end
