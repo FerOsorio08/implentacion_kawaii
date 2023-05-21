@@ -1,7 +1,7 @@
 ## 1. Definir un modulo
 
 ### BNF
-< defmodule > ::= "defmodule" < module_name > "do" < module_functions > "end"
+< defmodule > ::= "defmodule" < module_name > "do" \n\t< module_functions > \n"end"
 
 < module_functions > ::= < function > | < function > < module_functions >
 
