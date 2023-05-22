@@ -58,6 +58,8 @@ Ian Holender
                  [else (cons (car chars) current-token)])))])))
 
 
+
+
 (define (char-operator? char)
   " Identify caracters that represent arithmetic operators "
   (member char '(#\+ #\- #\* #\/ #\= #\^)))
@@ -68,16 +70,16 @@ Ian Holender
   Accept states: int float exp "
   (case state
     ['start (cond
-             [(char-numeric? char) (values 'int #f)]
-              [(or (eq? char #\+) (eq? char #\-)) (values 'sign #f)]
-              [(char-alphabetic? char)(values 'var #f)]
-              [(eq? char #\/) (values 'slash #f)]
-              [(eq? char #\_)(values 'var #f)]
-              [(eq? char #\;) (values 'comment #f)]
-              [(eq? char #\space) (values 'spa #f)]
-              [(eq? char #\( ) (values 'op_par #f)]
-              [(eq? char #\) ) (values 'close_par #f)]
-              [else (values 'inv #f )])]
+              [(char-numeric? char) (values 'int #f)]
+             [(char-alphabetic? char) (values 'var #f)]
+             [(or (eq? char #\+) (eq? char #\-)) (values 'sign #f)]
+             [(eq? char #\/) (values 'slash #f)]
+             [(eq? char #\_)(values 'var #f)]
+             [(eq? char #\;) (values 'comment #f)]
+             [(eq? char #\space) (values 'spa #f)]
+             [(eq? char #\( ) (values 'op_par #f)]
+             [(eq? char #\) ) (values 'close_par #f)]
+             [else (values 'inv #f)])]
 
 
     ['sign (cond
@@ -122,12 +124,12 @@ Ian Holender
             [else (values 'inv #f )])]
 
     ['var (cond
-            [(char-alphabetic? char) (values 'var #f)]
-            [(char-numeric? char) (values 'var #f)]
-            [(eq? char #\_) (values 'var #f)]
-            [(char-operator? char) (values 'op 'var)]
-            [(eq? char #\space) (values 'spa 'var)]
-            [else (values 'inv #f )])]
+         [(char-alphabetic? char) (values 'var #f)]
+         [(char-numeric? char) (values 'var #f)]
+         [(eq? char #\_) (values 'var #f)]
+         [(char-operator? char) (values 'op 'var)]
+         [(eq? char #\space) (values 'spa 'var)]
+         [else (values 'inv #f)])]
 
     ['op (cond
            [(char-numeric? char) (values 'int 'op)]
@@ -214,13 +216,16 @@ Ian Holender
 (define result06 (arithmetic-lexer "data"))
 (define result07 (arithmetic-lexer "one+two"))
 
+;;; (displayln (for/list ([token result]) (format "~a -> ~a" (car token) (cdr token))))
+(displayln (for/list ([token result]) (format "~a ---> ~a\n" (car token) (cdr token))))
 
 
-(displayln result)
-(displayln result01)
-(displayln result02)
-(displayln result03)
-(displayln result04)
-(displayln result05)
-(displayln result06)
-(displayln result07)
+;;; (displayln result)
+;;; (displayln result01)
+;;; (displayln result02)
+;;; (displayln result03)
+;;; (displayln result04)
+;;; (displayln result05)
+;;; (displayln result06)
+;;; (displayln result07)
+
