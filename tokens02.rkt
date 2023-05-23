@@ -30,7 +30,7 @@ Ian Holender
 
 ; This is a function definition in Racket that takes a string as input.
 (define (arithmetic-lexer strng)
-  (evaluate-dfa (dfa delta-arithmetic 'start '(int float exp var spa op com)) strng))
+(evaluate-dfa (dfa delta-arithmetic 'start '(int float exp var spa op com)) strng))
 
 
 (define (evaluate-dfa dfa-to-evaluate strng)
@@ -43,8 +43,10 @@ Ian Holender
     (cond
       [(empty? chars)
        (if (member state (dfa-accept dfa-to-evaluate))
-           (reverse (cons (cons state (list->string (reverse current-token))) tokens))
-           'inv)]
+          (if (eq? state 'spa)
+            (reverse tokens)
+            (reverse (cons (list state (list->string (reverse current-token))) tokens)))           
+            'inv)]
       [else
        (let-values
            ([(new-state found) ((dfa-func dfa-to-evaluate) state (car chars))])
