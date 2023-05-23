@@ -5,7 +5,8 @@ Fernanda Osorio Arroyo
 
 Ian Holender Mariaca
 <div style="text-align: justify">
-## 1. Definir un modulo y una función
+
+## 1. Definir un modulo y una función, dentro de cada notación definimos el defmodule y la función cómo uno mismo, ya que se complementan y de esta manera se puede ver la notación completa.
 
 ## **BNF**
 < defmodule > ::= "defmodule" < module_name > "do" \n\t< module_functions > \n"end"
@@ -40,15 +41,15 @@ Ian Holender Mariaca
 
 DEFMODULE ::= DEFMODULE MODULENAME 'do' MODULE_FUNCTIONS 'end'
 
-MODULE_FUNCTIONS ::= FUNCTION | FUNCTION MODULE_FUNCTIONS
+MODULE_FUNCTIONS ::= { FUNCTION } 
 
 FUNCTION ::= 'def' FUNCTION_NAME '(' PARAMETERS ')' ',' 'do' FUNCTION_BODY 'end' | 'def' FUNCTION_NAME '(' PARAMETERS')' ARGS IDENTIFIER ',' 'do' FUNCTION_BODY 'end' |  'def' FUNCTION_NAME '(' PARAMETERS ')' ARGS IDENTIFIER 'do' FUNCTION_BODY 'end' | 'def' FUNCTION_NAME '(' PARAMETERS ')' 'do' FUNCTION_BODY 'end'
 
-PARAMETERS::= IDENTIFIER | IDENTIFIER ',' PARAMETERS
+PARAMETERS ::= IDENTIFIER { ',' IDENTIFIER }
 
-FUNCTION_BODY ::= IDENTIFIER | IDENTIFIER FUNCTION_BODY
+FUNCTION_BODY ::= IDENTIFIER { IDENTIFIER }
 
-IDENTIFIER ::= LETTERS | LETTERS IDENTIFIER | NUMBER | NUMBER IDENTIFIER | SYMBOL | SYMBOL IDENTIFIER
+IDENTIFIER ::= LETTERS { LETTERS } | NUMBER { NUMBER } | SYMBOL { SYMBOL }
 
 MODULE_NAME ::= CAPS + IDENTIFIER | '_' + IDENTIFIER
 
