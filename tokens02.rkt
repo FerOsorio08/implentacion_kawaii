@@ -49,15 +49,21 @@ Ian Holender
             'inv)]
       [else
        (let-values
-           ([(new-state found) ((dfa-func dfa-to-evaluate) state (car chars))])
-         (loop (cdr chars)
-               new-state
-               (cond
-                 [found (cons (cons found (list->string (reverse current-token))) tokens)]
-                 [else tokens])
-               (cond
-                 [found '()]
-                 [else (cons (car chars) current-token)])))])))
+      ([(new-state found) ((dfa-func dfa-to-evaluate) state (car chars))])
+      (if found
+          (loop (cdr chars) new-state
+            (cons (list found (list->string (reverse current-token))) tokens)
+            (if (eq? #\space (car chars))
+                '()
+                (list (car chars))
+            ))
+          (loop (cdr chars) new-state tokens
+            (if (eq? #\space (car chars))
+                current-token
+                (cons (car chars) current-token)
+            )
+          )))]
+         )))
 
 
 
