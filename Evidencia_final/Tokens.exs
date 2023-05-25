@@ -1,18 +1,18 @@
-# # El lenguaje utilizado será python,los tokens serán los siguientes:
-# 1. Palabras reservadas -> if, else, while, for, print, return, import, def, class, try, except,
-# 2. identificador (variable, función, clase, módulo u otro objeto) -> A-Z o a-z) o un guion bajo (_) seguido de cero o más letras, guiones bajos y dígitos (0-9).
-# 3. Operador aritmetico -> (+, -, *, /, %, **, //)
-# 4. operadores de asignación (=, +=, -=, *=, /=, etc.)
-# 5. operadores de comparación (==, !=, <, >, <=, >=)
-# 6. operadores lógicos (and, or, not)
-# 7. int 0 - 9
-# 8. float 0 - 9 . 0 - 9
-# 9. string " ..... "
-# 10. comentarios #
-# 11. espacios
-# 12. listas []
-# 13. tuplas ()
-# 14. diccionarios
+# # # # El lenguaje utilizado será python,los tokens serán los siguientes:
+# # # 1. Palabras reservadas -> if, else, while, for, print, return, import, def, class, try, except,
+# # # 2. identificador (variable, función, clase, módulo u otro objeto) -> A-Z o a-z) o un guion bajo (_) seguido de cero o más letras, guiones bajos y dígitos (0-9).
+# # # 3. Operador aritmetico -> (+, -, *, /, %, **, //)
+# # # 4. operadores de asignación (=, +=, -=, *=, /=, etc.)
+# # # 5. operadores de comparación (==, !=, <, >, <=, >=)
+# # # 6. operadores lógicos (and, or, not)
+# # # 7. int 0 - 9
+# # # 8. float 0 - 9 . 0 - 9
+# # # 9. string " ..... "
+# # # 10. comentarios #
+# # # 11. espacios
+# # # 12. listas []
+# # # 13. tuplas ()
+# # # 14. diccionarios
 
 defmodule Resaltador_syntaxys do
 
@@ -44,8 +44,6 @@ defmodule Resaltador_syntaxys do
 # Función cuando se encuentra el inicio del string, en esta función se ve si el elemento de la lista es una comilla o una comilla doble lo cual significa que hay un string, por lo que llama a la función privada string maker para extraer el string completo.
   defp do_resaltador(list = ["\"" | _], tokens) do
     {string, rest} = string_make(list, [])
-    IO.puts("String Token:")
-    IO.inspect(Enum.join(string))
     do_resaltador(rest, [{Enum.join(string), "string"} | tokens])
   end
 
@@ -68,20 +66,32 @@ defmodule Resaltador_syntaxys do
   #Busca los operadores que comparan expresiones
   defp do_resaltador(["<" | rest], tokens), do: do_resaltador(rest, [{"<", "comparative_operator"} | tokens])
   defp do_resaltador([">" | rest], tokens), do: do_resaltador(rest, [{">", "comparative_operator"} | tokens])
-  # defp do_resaltador(["=" , "=" | rest], tokens), do: do_resaltador(rest, [{"==", "comparative_operator"} | tokens])
-  # defp do_resaltador(["<" , "=" | rest], tokens), do: do_resaltador(rest, [{"<=", "comparative_operator"} | tokens])
-  # defp do_resaltador([">" , "=" | rest], tokens), do: do_resaltador(rest, [{">=", "comparative_operator"} | tokens])
-  # defp do_resaltador(["!" , "=" | rest], tokens), do: do_resaltador(rest, [{"!=", "comparative_operator"} | tokens])
 
+  defp do_resaltador(list, tokens) do
+    [first | [second | rest]] = list
 
-  #Busca operadores asignativos
-  # defp do_resaltador(["+" , "=" | rest], tokens), do: do_resaltador(rest, [{"+=", "assignative_operator"} | tokens])
+    case {first, second} do
+      {"=", "="} ->
+        do_resaltador(rest, [{"==", "assignative_operator"} | tokens])
+      {"<", "="} ->
+        do_resaltador(rest, [{"<=", "comparative_operator"} | tokens])
+      {">", "="} ->
+        do_resaltador(rest, [{">=", "comparative_operator"} | tokens])
+      {"!", "="} ->
+        do_resaltador(rest, [{"!=", "comparative_operator"} | tokens])
+      {"+", "="} ->
+        do_resaltador(rest, [{"+=", "assignative_operator"} | tokens])
+      {"-", "="} ->
+        do_resaltador(rest, [{"-=", "assignative_operator"} | tokens])
+      {"*", "="} ->
+        do_resaltador(rest, [{"*=", "assignative_operator"} | tokens])
+      {"/", "="} ->
+        do_resaltador(rest, [{"/=", "assignative_operator"} | tokens])
+      _ ->
+        do_resaltador(rest, tokens)
+    end
+  end
 
-  # defp do_resaltador(["-" , "=" | rest], tokens), do: do_resaltador(rest, [{"-=", "assignative_operator"} | tokens])
-
-  # defp do_resaltador(["*" , "=" | rest], tokens), do: do_resaltador(rest, [{"*=", "assignative_operator"} | tokens])
-
-  # defp do_resaltador(["/" , "=" | rest], tokens), do: do_resaltador(rest, [{"/=", "assignative_operator"} | tokens])
 
   defp do_resaltador(list, tokens) do
     case word_make(list) do
@@ -95,7 +105,7 @@ defmodule Resaltador_syntaxys do
   end
 #
   #Esta función lo que hace es que cuando encuentra unas comillas iguales a las que abrieron el string regresa el string. Va pasando por cada elemento en la lista si es que es diferente a las comillas, finalmente regresa el string concatenando la comilla inicial, las palabras y la comilla inicial, con el resto de la lista de elementos que no pertenecieron a ese token.
-  defp string_make([comillas | rest],tokens) when comillas in ~w(' ") do
+  defp string_make([comillas | rest],tokens) when comillas in ~w(") do
     case Enum.split_while(rest, &(&1 != comillas)) do
       {string, [^comillas | rest]} -> {tokens ++ [comillas | string] ++ [comillas], rest}
     end
@@ -112,14 +122,61 @@ defmodule Resaltador_syntaxys do
     |> Enum.split_while(&(&1 =~ ~r/[0-9.]/))
   end
 
-
-
-
-
-
-
-
 end
 
 tokens = Resaltador_syntaxys.resaltador("./funciones.py")
 IO.inspect(tokens)
+
+
+# defmodule Resaltador_syntaxys do
+#   @token_patterns [
+#     {~r/\b(and|or|not|if|else|elif|while|for|print|return|def|import|class|try|except|break)\b/, "reserved_word"},
+#     {~r/[A-Za-z_][A-Za-z_0-9]*/, "identifier"},
+#     {~r/\b\d+\.?\d*\b/, "number"},
+#     {~r/\+|-|\*|\/|%|\*\*|\/\/|==|!=|<=|>=|<|>|and|or|not/, "operator"},
+#     {~r/\#.*$/, "comment"},
+#     {~r/\s/, "whitespace"},
+#     {~r/\[.*\]/, "list"},
+#     {~r/\(.*\)/, "tuple"},
+#     {~r/\{.*\}/, "dictionary"},
+#     {~r/"[^"]*"/, "string"}
+#   ]
+
+
+
+
+#   def resaltador(file_path) do
+#     python_code = File.read!(file_path)
+#     IO.puts("Python Code:")
+#     IO.puts(python_code)
+#     IO.puts("Code Length: #{String.length(python_code)}")
+
+#     tokens = do_resaltador(python_code, [])
+#     Enum.reverse(tokens)
+#   end
+
+#   defp do_resaltador("", tokens), do: tokens
+
+#   defp do_resaltador(code, tokens) do
+#     {token, token_type, remaining_code} = next_token(code)
+#     do_resaltador(remaining_code, [{token, token_type} | tokens])
+#   end
+
+#   defp next_token(code) do
+#     Enum.reduce_while(@token_patterns, nil, fn {pattern, token_type}, _acc ->
+#       case Regex.run(pattern, code) do
+#         [match | _] ->
+#           remaining_code = String.slice(code, byte_size(match)..-1)
+#           {:halt, {match, token_type, remaining_code}}
+#         _ ->
+#           {:cont, nil}
+#       end
+#     end)
+#   end
+
+
+# end
+
+# # Run the code:
+# tokens = Resaltador_syntaxys.resaltador("./funciones.py")
+# IO.inspect(tokens)
