@@ -1,0 +1,55 @@
+.comment {
+    color: #008000; 
+}
+
+.reserved_word {
+    color: #0000FF; 
+}
+
+.identifier {
+    color: #800080; 
+}
+
+.number {
+    color: #FF4500; 
+}
+
+.arithmetic_operator {
+    color: #8B0000;
+}
+
+.logical_operator {
+    color: #FFD700; 
+}
+
+.assignment_operator {
+    color: #DC143C; 
+}
+
+.comparison_operator {
+    color: #FF69B4; 
+}
+
+.open_bra {
+    color: #4B0082; 
+}
+
+.close_bra {
+    color: #4B0082; 
+}
+
+.open_key {
+    color: #B22222; 
+}
+
+.close_key {
+    color: #B22222; 
+}
+
+.open_par {
+    color: #2E8B57; 
+}
+
+.close_par {
+    color: #2E8B57; 
+}
