@@ -55,6 +55,21 @@ body{
 .python_methods {
     color: rgb(248, 0, 178);
 }
+.racket_methods {
+    color: rgb(248, 0, 178);
+}
+.character_literal{
+    color: rgb(0, 255, 60);
+}
+.special_word{
+    color: rgb(0, 153, 255);
+}
+.character_line{
+    color: rgb(255, 145, 0);
+}
+.multiple_line_comment{
+    color: rgb(0, 255, 204);
+}
 
 .menu_container {
     background-color: pink;

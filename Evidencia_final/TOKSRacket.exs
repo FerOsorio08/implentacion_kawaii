@@ -100,24 +100,27 @@ defmodule Resaltador_syntaxys do
   defp token_finder_racket("", tokens), do: Enum.reverse(tokens)
 
   defp token_finder_racket(line, tokens) do
-      {line, tokens} = tokenize_racket(line, tokens, ~r/(^#lang|^define|^require|^loop|^cond|^if|^else|^case|^let|^provide|^struct|^begin|^lambda|^syntax|^break)\b/, "reserved_word")
+      {line, tokens} = tokenize_racket(line, tokens, ~r/(^#lang)\b/, "special_word")
+      {line, tokens} = tokenize_racket(line, tokens, ~r/(^#lang|^define|^require|^loop|^cond|^if|^else|^case|^let|^provide|^struct|^begin|^lambda|^syntax|^break|^empty|^car|^lst|^cdr)\b/, "reserved_word")
       {line, tokens} = tokenize_racket(line, tokens, ~r/(^\s)/, "space")
-      {line, tokens} = tokenize_racket(line, tokens, ~r/^and|^or|^not|and-let\*|or-let\*|cond->\b/, "logical_operator")
+      {line, tokens} = tokenize_racket(line, tokens, ~r/^and|^or|^not|^\?|^and-let\*|^or-let\*|^cond->|^\->\b/, "logical_operator")
       {line, tokens} = tokenize_racket(line, tokens, ~r/^;.*$/, "comment")
-      {line, tokens} = tokenize_racket(line, tokens, ~r/^\+|^-|^\/|quotient|remainder|modulo|expt|sqrt|abs/, "racket_methods")
+      {line, tokens} = tokenize_racket(line, tokens, ~r/^'()|quotient|remainder|modulo|expt|sqrt|abs/, "racket_methods")
       {line, tokens} = tokenize_racket(line, tokens, ~r/^True|^False|^true|^false\b/, "boolean")
       {line, tokens} = tokenize_racket(line, tokens, ~r/^[A-Za-z_][A-Za-z_0-9]*/, "identifier")
       {line, tokens} = tokenize_racket(line, tokens, ~r/^\b\d+\.?\d*\b/, "number")
-      {line, tokens} = tokenize_racket(line, tokens, ~r/^\+=|^set!|^=/, "assigment_operator")
-      {line, tokens} = tokenize_racket(line, tokens, ~r/^==|^!=|^>|^<|^>=|^<=|\?/, "comparison_operator")
+      {line, tokens} = tokenize_racket(line, tokens, ~r/^#?^\+=|^set!|^=/, "assigment_operator")
+      {line, tokens} = tokenize_racket(line, tokens, ~r/^==|^!=|^>|^<|^>=|^<=/, "comparison_operator")
       {line, tokens} = tokenize_racket(line, tokens, ~r/^\+|^-|^\*|^\//, "arithmetic_operator")
-      {line, tokens} = tokenize_racket(line, tokens, ~r/^[\[\](){}:,.\]]/, "punctuator")
-      {line, tokens} = tokenize_racket(line, tokens, ~r/(['"])(?:(?!\1).)*\1/, "string")
+      {line, tokens} = tokenize_racket(line, tokens,~r/^[\[\](){}:,^\'.\]]/, "punctuator")
+      {line, tokens} = tokenize_racket(line, tokens, ~r/(^['])(?:(?!\1).)*\1/, "character_line")
+      {line, tokens} = tokenize_racket(line, tokens, ~r/^#\\(\w+)|^#\\\\|^#\w|^#\\(\+|\;|\(|\)|\.|\e|\E|\-|\*|\/|\=|\^|\\)/, "character_literal")
+      {line, tokens} = tokenize_racket(line, tokens, ~r/(^["])(?:(?!\1).)*\1/, "string")
+      {line, tokens} = tokenize_racket(line, tokens, ~r/"(?:[^"\\]|\\.)*"/m, "multiple_line_comment")
 
 
 
-
-      if line == "", do: Enum.reverse(tokens), else: token_finder(line, tokens)
+      if line == "", do: Enum.reverse(tokens), else: token_finder_racket(line, tokens)
   end
 
   defp tokenize_racket(line, tokens, regex, token_type) do
