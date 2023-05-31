@@ -3,6 +3,9 @@
 # Single-line comment
 # It prints "Hello, World!"
 print("Hello, World!")
+lst1 = [1,2,3,4,5]
+lst2 = ["hola", "hola", "hola"]
+
 
 # Assignment operator
 x = 10
@@ -17,7 +20,7 @@ poer = x ** 2
 # Comparison operators
 is_equal = x == y
 is_greater = x > y
-is_less_equal = z <= w
+is_less_equal = z == w
 
 # Lists
 fruits = ['apple', 'banana', 'cherry']
@@ -42,7 +45,7 @@ print("y =", y)
 print("z =", z)
 print("w =", w)
 print("remainder =", remainder)
-print("power =", poerr)
+print("power =", poer)
 print("is_equal =", is_equal)
 print("is_greater =", is_greater)
 print("is_less_equal =", is_less_equal)

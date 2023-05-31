@@ -1,13 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="tokens.css">
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="tokens.css">
 </head>
 <body>
+<div class = "dropdown"> <div class="butt_container"><button class = "button">TOKEN MENU</button></div>
+  <div class="dropdown-content">
+    <span class="string">String</span><br>
+    <span class="reserved_word">reserved_word</span><br>
+    <span class="logical_operator">logical_operator</span><br>
+    <span class="comment">comment</span><br>
+    <span class="python_methods">python_methods</span><br>
+    <span class="boolean">boolean</span><br>
+    <span class="identifier">identifier</span><br>
+    <span class="number">number</span><br>
+    <span class="assignment_operator">assigment_operator</span><br>
+    <span class="comparison_operator">comparison_operator</span><br>
+    <span class="arithmetic_operator">arithmetic_operator</span><br>
+    <span class="punctuator">punctuator</span><br>
+  </div>
+</div>
+<script>
+// JavaScript code to handle the dropdown functionality
+var dropdown = document.getElementsByClassName("dropdown")[0];
+dropdown.addEventListener("mouseenter", function() {
+  this.getElementsByClassName("dropdown-content")[0].style.display = "block";
+});
+dropdown.addEventListener("mouseleave", function() {
+  this.getElementsByClassName("dropdown-content")[0].style.display = "none";
+});
+</script>
 <span class="comment"># This is a Python code snippet</span>
 <span class="space">
 </span>
@@ -24,6 +50,40 @@
 <span class="string">"Hello, World!"</span>
 <span class="punctuator">)</span>
 <span class="space">
+</span>
+<br><span class="identifier">lst1</span>
+<span class="space"> </span>
+<span class="assigment_operator">=</span>
+<span class="space"> </span>
+<span class="punctuator">[</span>
+<span class="number">1</span>
+<span class="punctuator">,</span>
+<span class="number">2</span>
+<span class="punctuator">,</span>
+<span class="number">3</span>
+<span class="punctuator">,</span>
+<span class="number">4</span>
+<span class="punctuator">,</span>
+<span class="number">5</span>
+<span class="punctuator">]</span>
+<span class="space">
+</span>
+<br><span class="identifier">lst2</span>
+<span class="space"> </span>
+<span class="assigment_operator">=</span>
+<span class="space"> </span>
+<span class="punctuator">[</span>
+<span class="string">"hola"</span>
+<span class="punctuator">,</span>
+<span class="space"> </span>
+<span class="string">"hola"</span>
+<span class="punctuator">,</span>
+<span class="space"> </span>
+<span class="string">"hola"</span>
+<span class="punctuator">]</span>
+<span class="space">
+</span>
+<br><span class="space">
 </span>
 <br><span class="space">
 </span>
@@ -109,8 +169,7 @@
 <span class="space"> </span>
 <span class="identifier">x</span>
 <span class="space"> </span>
-<span class="assigment_operator">=</span>
-<span class="assigment_operator">=</span>
+<span class="comparison_operator">==</span>
 <span class="space"> </span>
 <span class="identifier">y</span>
 <span class="space">
@@ -132,8 +191,7 @@
 <span class="space"> </span>
 <span class="identifier">z</span>
 <span class="space"> </span>
-<span class="comparison_operator"><</span>
-<span class="assigment_operator">=</span>
+<span class="comparison_operator">==</span>
 <span class="space"> </span>
 <span class="identifier">w</span>
 <span class="space">
@@ -144,25 +202,25 @@
 <span class="space">
 </span>
 <br><span class="identifier">fruits</span>
-<span class="string">'apple'</span>
 <span class="space"> </span>
 <span class="assigment_operator">=</span>
-<span class="string">'banana'</span>
 <span class="space"> </span>
 <span class="punctuator">[</span>
+<span class="string">'apple'</span>
+<span class="punctuator">,</span>
+<span class="space"> </span>
+<span class="string">'banana'</span>
+<span class="punctuator">,</span>
+<span class="space"> </span>
 <span class="string">'cherry'</span>
-<span class="punctuator">,</span>
-<span class="space"> </span>
-<span class="punctuator">,</span>
-<span class="space"> </span>
 <span class="punctuator">]</span>
 <span class="space">
 </span>
 <br><span class="identifier">fruits</span>
 <span class="punctuator">.</span>
-<span class="string">'durian'</span>
 <span class="python_methods">append</span>
 <span class="punctuator">(</span>
+<span class="string">'durian'</span>
 <span class="punctuator">)</span>
 <span class="space">
 </span>
@@ -182,26 +240,26 @@
 <span class="space">
 </span>
 <br><span class="identifier">person</span>
-<span class="string">'name'</span>
 <span class="space"> </span>
 <span class="assigment_operator">=</span>
-<span class="string">'John'</span>
 <span class="space"> </span>
 <span class="punctuator">{</span>
-<span class="string">'age'</span>
+<span class="string">'name'</span>
 <span class="punctuator">:</span>
-<span class="string">'city'</span>
 <span class="space"> </span>
+<span class="string">'John'</span>
 <span class="punctuator">,</span>
-<span class="string">'New York'</span>
 <span class="space"> </span>
+<span class="string">'age'</span>
 <span class="punctuator">:</span>
 <span class="space"> </span>
 <span class="number">25</span>
 <span class="punctuator">,</span>
 <span class="space"> </span>
+<span class="string">'city'</span>
 <span class="punctuator">:</span>
 <span class="space"> </span>
+<span class="string">'New York'</span>
 <span class="punctuator">}</span>
 <span class="space">
 </span>
@@ -209,19 +267,19 @@
 <span class="punctuator">[</span>
 <span class="string">'occupation'</span>
 <span class="punctuator">]</span>
-<span class="string">'Engineer'</span>
 <span class="space"> </span>
 <span class="assigment_operator">=</span>
 <span class="space"> </span>
+<span class="string">'Engineer'</span>
 <span class="space">
 </span>
 <br><span class="identifier">city</span>
-<span class="string">'city'</span>
 <span class="space"> </span>
 <span class="assigment_operator">=</span>
 <span class="space"> </span>
 <span class="identifier">person</span>
 <span class="punctuator">[</span>
+<span class="string">'city'</span>
 <span class="punctuator">]</span>
 <span class="space">
 </span>
@@ -234,14 +292,14 @@
 <span class="space"> </span>
 <span class="assigment_operator">=</span>
 <span class="space"> </span>
-<span class="boolean">True</span>
+<span class="identifier">True</span>
 <span class="space">
 </span>
 <br><span class="identifier">is_false</span>
 <span class="space"> </span>
 <span class="assigment_operator">=</span>
 <span class="space"> </span>
-<span class="boolean">False</span>
+<span class="identifier">False</span>
 <span class="space">
 </span>
 <br><span class="identifier">logical_and</span>
@@ -330,7 +388,7 @@
 <span class="string">"power ="</span>
 <span class="punctuator">,</span>
 <span class="space"> </span>
-<span class="identifier">poerr</span>
+<span class="identifier">poer</span>
 <span class="punctuator">)</span>
 <span class="space">
 </span>

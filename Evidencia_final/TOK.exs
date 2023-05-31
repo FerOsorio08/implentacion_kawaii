@@ -2,17 +2,44 @@ defmodule Resaltador_syntaxys do
   def resaltador(file_path) do
     File.write("./Tokens.html", "")
     File.write("./Tokens.html", """
-    <!DOCTYPE html>
-    <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Document</title>
-        <link rel="stylesheet" type="text/css" href="tokens.css">
-    </head>
-    <body>
-    """)
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="tokens.css">
+</head>
+<body>
+<div class = "dropdown"> <div class="butt_container"><button class = "button">TOKEN MENU</button></div>
+  <div class="dropdown-content">
+    <span class="string">String</span><br>
+    <span class="reserved_word">reserved_word</span><br>
+    <span class="logical_operator">logical_operator</span><br>
+    <span class="comment">comment</span><br>
+    <span class="python_methods">python_methods</span><br>
+    <span class="boolean">boolean</span><br>
+    <span class="identifier">identifier</span><br>
+    <span class="number">number</span><br>
+    <span class="assignment_operator">assigment_operator</span><br>
+    <span class="comparison_operator">comparison_operator</span><br>
+    <span class="arithmetic_operator">arithmetic_operator</span><br>
+    <span class="punctuator">punctuator</span><br>
+  </div>
+</div>
+<script>
+// JavaScript code to handle the dropdown functionality
+var dropdown = document.getElementsByClassName("dropdown")[0];
+dropdown.addEventListener("mouseenter", function() {
+  this.getElementsByClassName("dropdown-content")[0].style.display = "block";
+});
+dropdown.addEventListener("mouseleave", function() {
+  this.getElementsByClassName("dropdown-content")[0].style.display = "none";
+});
+</script>
+""")
+
 
 
     file_path
@@ -37,14 +64,14 @@ defmodule Resaltador_syntaxys do
       {line, tokens} = tokenize(line, tokens, ~r/(^and|^or|^not)\b/, "logical_operator")
       {line, tokens} = tokenize(line, tokens, ~r/^#.*$/, "comment")
       {line, tokens} = tokenize(line, tokens, ~r/^abs|^all|^any|^ascii|^bin|^bool|^callable|^chr|^classmethod|^compile|^delattr|^dir|^divmod|^enumerate|^eval|^exec|^filter|^float|^format|^getattr|^hasattr|^hash|^help|^hex|^id|^input|^int|^isinstance|^issubclass|^iter|^len|^list|^map|^max|^min|^next|^object|^oct|^open|^ord|^pow|^print|^property|^range|^repr|^reversed|^round|^set|^setattr|^slice|^sorted|^staticmethod|^str|^sum|^super|^tuple|^type|^vars|^zip|^append|^pop/, "python_methods")
-      {line, tokens} = tokenize(line, tokens, ~r/^True|^False\b/, "boolean")
       {line, tokens} = tokenize(line, tokens, ~r/^[A-Za-z_][A-Za-z_0-9]*/, "identifier")
+      {line, tokens} = tokenize(line, tokens, ~r/^True|^False\b/, "boolean")
       {line, tokens} = tokenize(line, tokens, ~r/^\b\d+\.?\d*\b/, "number")
+      {line, tokens} = tokenize(line, tokens, ~r/^==|^!=|^>=|^<=|^>|^</, "comparison_operator")
       {line, tokens} = tokenize(line, tokens, ~r/^\+=|^-=|^\*=|^\/=|^%=|^\*\*=|^=/, "assigment_operator")
-      {line, tokens} = tokenize(line, tokens, ~r/^==|^!=|^>|^<|^>=|^<=/, "comparison_operator")
       {line, tokens} = tokenize(line, tokens, ~r/^\+|^-|^\*|^\/|^%|^\*\*|^\/\//, "arithmetic_operator")
       {line, tokens} = tokenize(line, tokens, ~r/^[\[\](){}:,.\]]/, "punctuator")
-      {line, tokens} = tokenize(line, tokens, ~r/(['"])(?:(?!\1).)*\1/, "string")
+      {line, tokens} = tokenize(line, tokens, ~r/(^['"])(?:(?!\1).)*\1/, "string")
 
 
 

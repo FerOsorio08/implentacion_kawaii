@@ -1,5 +1,13 @@
+*{
+    box-sizing: border-box;
+    font-family:'Courier New', Courier, monospace;
+}
+body{
+    margin: 0px;
+    background-color: #000000;
+}
 .comment {
-    color: #008000; 
+    color: #1c911c; 
 }
 
 .reserved_word {
@@ -7,23 +15,23 @@
 }
 
 .identifier {
-    color: #800080; 
+    color: #ef0aef; 
 }
 
 .number {
-    color: #FF4500; 
+    color: #d6430d; 
 }
 
 .arithmetic_operator {
-    color: #8B0000;
+    color: #00b7ff;
 }
 
 .logical_operator {
-    color: #FFD700; 
+    color: #c8aa00; 
 }
 
 .assigment_operator {
-    color: #DC143C; 
+    color: #8961ff; 
 }
 
 .comparison_operator {
@@ -31,21 +39,63 @@
 }
 
 .punctuator {
-    color: #44f659; 
+    color: #f80202; 
 }
 
-.multiline_string {
-    color: #c26083; 
-}
 
 .string {
     color: #c26083; 
 }
 
 .boolean {
-    color: red;
+    color: rgb(30, 144, 146);
 }
 
 .python_methods {
     color: rgb(248, 0, 178);
 }
+
+.menu_container {
+    background-color: pink;
+    padding: 10px;
+    margin-left: 270px;
+    
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: relative;
+    background-color: #000000;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    align-items: center;
+    text-align: center;
+    padding: 10px;
+    border-radius: 10px 10px 10px 10px;
+    margin: 7px;
+    
+    
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+.button {
+    background-color: #000000;
+    padding: 10px;
+    color: rgb(184, 106, 212);
+    
+    
+}
+.butt_container{
+    display: flex;
+    justify-content: flex-end;
+  
+}
+
