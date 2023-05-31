@@ -1,58 +1,50 @@
-# This is a Python code snippet
+# Function to check if a number is prime
+def is_prime(number):
+    if number < 2:
+        return False
+    for i in range(2, int(number ** 0.5) + 1):
+        if number % i == 0:
+            return False
+    return True
 
-# Single-line comment
-# It prints "Hello, World!"
-print("Hello, World!")
-lst1 = [1,2,3,4,5]
-lst2 = ["hola", "hola", "hola"]
+# List of numbers
+numbers = [3, 7, 12, 5, 23, 17]
 
+# Dictionary of names and ages
+people = {"Alice": 25, "Bob": 30, "Charlie": 35}
+
+# List method: append
+numbers.append(10)
 
 # Assignment operator
-x = 10
+x = 5
+
+# Logical operator
+is_even = (x % 2 == 0)
 
 # Arithmetic operators
-y = x + 5
-z = y * 2
-w = z / 3
-remainder = z % 3
-poer = x ** 2
+addition_result = x + 10
+subtraction_result = x - 3
+multiplication_result = x * 4
+division_result = x / 2
 
 # Comparison operators
-is_equal = x == y
-is_greater = x > y
-is_less_equal = z == w
+greater_than_result = x > 3
+less_than_result = x < 10
+equality_result = x == 5
 
-# Lists
-fruits = ['apple', 'banana', 'cherry']
-fruits.append('durian')
-fruit_count = len(fruits)
+# Boolean values
+is_prime_number = is_prime(x)
 
-# Dictionaries
-person = {'name': 'John', 'age': 25, 'city': 'New York'}
-person['occupation'] = 'Engineer'
-city = person['city']
-
-# Logical operators
-is_true = True
-is_false = False
-logical_and = is_true and is_false
-logical_or = is_true or is_false
-logical_not = not is_true
-
-# Print results
-print("x =", x)
-print("y =", y)
-print("z =", z)
-print("w =", w)
-print("remainder =", remainder)
-print("power =", poer)
-print("is_equal =", is_equal)
-print("is_greater =", is_greater)
-print("is_less_equal =", is_less_equal)
-print("fruits =", fruits)
-print("fruit_count =", fruit_count)
-print("person =", person)
-print("city =", city)
-print("logical_and =", logical_and)
-print("logical_or =", logical_or)
-print("logical_not =", logical_not)
+# Printing the results
+print("Numbers:", numbers)
+print("People:", people)
+print("Is Even:", is_even)
+print("Addition:", addition_result)
+print("Subtraction:", subtraction_result)
+print("Multiplication:", multiplication_result)
+print("Division:", division_result)
+print("Greater Than:", greater_than_result)
+print("Less Than:", less_than_result)
+print("Equality:", equality_result)
+print("Is Prime Number:", is_prime_number)

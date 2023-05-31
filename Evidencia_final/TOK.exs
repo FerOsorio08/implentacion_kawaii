@@ -60,7 +60,7 @@ dropdown.addEventListener("mouseleave", function() {
 
   defp token_finder(line, tokens) do
       {line, tokens} = tokenize(line, tokens, ~r/(^if|^else|^elif|^while|^for|^print|^return|^len|^str|^def|^import|^class|^try|^except|^break)\b/, "reserved_word")
-      {line, tokens} = tokenize(line, tokens, ~r/(^\s)/, "space")
+      {line, tokens} = tokenize(line, tokens, ~r/(^\s+)/, "space")
       {line, tokens} = tokenize(line, tokens, ~r/(^and|^or|^not)\b/, "logical_operator")
       {line, tokens} = tokenize(line, tokens, ~r/^#.*$/, "comment")
       {line, tokens} = tokenize(line, tokens, ~r/^abs|^all|^any|^ascii|^bin|^bool|^callable|^chr|^classmethod|^compile|^delattr|^dir|^divmod|^enumerate|^eval|^exec|^filter|^float|^format|^getattr|^hasattr|^hash|^help|^hex|^id|^input|^int|^isinstance|^issubclass|^iter|^len|^list|^map|^max|^min|^next|^object|^oct|^open|^ord|^pow|^print|^property|^range|^repr|^reversed|^round|^set|^setattr|^slice|^sorted|^staticmethod|^str|^sum|^super|^tuple|^type|^vars|^zip|^append|^pop/, "python_methods")
@@ -89,7 +89,7 @@ dropdown.addEventListener("mouseleave", function() {
   end
 
   defp html(token, token_type, tokens) do
-    token_html = "<span class=\"#{token_type}\">#{token}</span>\n"
+    token_html = "<span class=\"#{token_type}\">#{token}</span>"
     File.write("./Tokens.html", token_html, [:append])
     tokens
   end
