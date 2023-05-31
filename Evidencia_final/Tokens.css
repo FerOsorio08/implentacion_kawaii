@@ -31,13 +31,21 @@
 }
 
 .punctuator {
-    color: #067274; 
+    color: #44f659; 
 }
 
-.parameters {
+.multiline_string {
     color: #c26083; 
 }
 
 .string {
     color: #c26083; 
+}
+
+.boolean {
+    color: red;
+}
+
+.python_methods {
+    color: rgb(248, 0, 178);
 }

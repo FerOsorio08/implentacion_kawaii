@@ -32,125 +32,34 @@ defmodule Resaltador_syntaxys do
   defp token_finder("", tokens), do: Enum.reverse(tokens)
 
   defp token_finder(line, tokens) do
+      {line, tokens} = tokenize(line, tokens, ~r/(^if|^else|^elif|^while|^for|^print|^return|^len|^str|^def|^import|^class|^try|^except|^break)\b/, "reserved_word")
+      {line, tokens} = tokenize(line, tokens, ~r/(^\s)/, "space")
+      {line, tokens} = tokenize(line, tokens, ~r/(^and|^or|^not)\b/, "logical_operator")
+      {line, tokens} = tokenize(line, tokens, ~r/^#.*$/, "comment")
+      {line, tokens} = tokenize(line, tokens, ~r/^abs|^all|^any|^ascii|^bin|^bool|^callable|^chr|^classmethod|^compile|^delattr|^dir|^divmod|^enumerate|^eval|^exec|^filter|^float|^format|^getattr|^hasattr|^hash|^help|^hex|^id|^input|^int|^isinstance|^issubclass|^iter|^len|^list|^map|^max|^min|^next|^object|^oct|^open|^ord|^pow|^print|^property|^range|^repr|^reversed|^round|^set|^setattr|^slice|^sorted|^staticmethod|^str|^sum|^super|^tuple|^type|^vars|^zip|^append|^pop/, "python_methods")
+      {line, tokens} = tokenize(line, tokens, ~r/^True|^False\b/, "boolean")
+      {line, tokens} = tokenize(line, tokens, ~r/^[A-Za-z_][A-Za-z_0-9]*/, "identifier")
+      {line, tokens} = tokenize(line, tokens, ~r/^\b\d+\.?\d*\b/, "number")
+      {line, tokens} = tokenize(line, tokens, ~r/^\+=|^-=|^\*=|^\/=|^%=|^\*\*=|^=/, "assigment_operator")
+      {line, tokens} = tokenize(line, tokens, ~r/^==|^!=|^>|^<|^>=|^<=/, "comparison_operator")
+      {line, tokens} = tokenize(line, tokens, ~r/^\+|^-|^\*|^\/|^%|^\*\*|^\/\//, "arithmetic_operator")
+      {line, tokens} = tokenize(line, tokens, ~r/^[\[\](){}:,.\]]/, "punctuator")
+      {line, tokens} = tokenize(line, tokens, ~r/(['"])(?:(?!\1).)*\1/, "string")
 
-      {line, tokens} = reserved_word(line, tokens)
-      {line, tokens} = punctuator(line, tokens)
-      {line, tokens} = logical_operator(line, tokens)
-      {line, tokens} = comment(line, tokens)
-      {line, tokens} = identifier(line, tokens)
-      {line, tokens} = number(line, tokens)
-      {line, tokens} = assignment_operator(line, tokens)
-      {line, tokens} = comparison_operator(line, tokens)
-      {line, tokens} = arithmetic_operator(line, tokens)
-      {line, tokens} = space(line, tokens)
-      {line, tokens} = string(line, tokens)
+
 
 
       if line == "", do: Enum.reverse(tokens), else: token_finder(line, tokens)
     end
 
-
-  defp reserved_word(line, tokens) do
-    case Regex.run(~r/(^if|^else|^elif|^while|^for|^print|^return|^len|^str|^def|^import|^class|^try|^except|^break)\b/, line) do
+  defp tokenize(line, tokens, regex, token_type) do
+    case Regex.run(regex, line) do
       nil -> {line, tokens}
       [token_match | _] ->
         {String.replace(line, token_match, "", global: false),
-        html(token_match, "reserved_word", [{token_match, "reserved word"} | tokens])}
+        html(token_match, token_type, [{token_match, token_type} | tokens])}
     end
   end
-
-  defp space(line, tokens) do
-    case Regex.run(~r/(^\s)/, line) do
-      nil -> {line, tokens}
-      [token_match | _] ->
-        {String.replace(line, token_match, "", global: false),
-        html(token_match, "space", [{token_match, "space"} | tokens])}
-    end
-  end
-
-  defp logical_operator(line, tokens) do
-    case Regex.run(~r/(^and|^or|^not)\b/, line) do
-      nil -> {line, tokens}
-      [token_match | _] ->
-        {String.replace(line, token_match, "", global: false),
-        html(token_match, "logical_operator", [{token_match, "logical_operator"} | tokens])}
-    end
-  end
-
-  defp identifier(line, tokens) do
-    case Regex.run(~r/^[A-Za-z_][A-Za-z_0-9]*/, line) do
-      nil -> {line, tokens}
-      [token_match | _] ->
-        {String.replace(line, token_match, "", global: false),
-        html(token_match, "identifier", [{token_match, "identifier"} | tokens])}
-    end
-  end
-
-  defp number(line, tokens) do
-    case Regex.run(~r/^\b\d+\.?\d*\b/, line) do
-      nil -> {line, tokens}
-      [token_match | _] ->
-        {String.replace(line, token_match, "", global: false),
-        html(token_match, "number", [{token_match, "number"} | tokens])}
-    end
-  end
-
-  defp arithmetic_operator(line, tokens) do
-    case Regex.run(~r/^\+|^-|^\*|^\/|^%|^\*\*|^\/\//, line) do
-      nil -> {line, tokens}
-      [token_match | _] ->
-        {String.replace(line, token_match, "", global: false),
-        html(token_match, "arithmetic_operator", [{token_match, "arithmetic_operator"} | tokens])}
-    end
-  end
-
-  defp comparison_operator(line, tokens) do
-    case Regex.run(~r/^==|^!=|^>|^<|^>=|^<=/, line) do
-      nil -> {line, tokens}
-      [token_match | _] ->
-        {String.replace(line, token_match, "", global: false),
-        html(token_match, "comparison_operator", [{token_match, "comparison_operator"} | tokens])}
-    end
-  end
-
-  defp assignment_operator(line, tokens) do
-    case Regex.run(~r/^\+=|^-=|^\*=|^\/=|^%=|^\*\*=|^=/, line) do
-      nil -> {line, tokens}
-      [token_match | _] ->
-        {String.replace(line, token_match, "", global: false),
-        html(token_match, "assigment_operator", [{token_match, "assigment_operator"} | tokens])}
-    end
-  end
-
-  defp comment(line, tokens) do
-    case Regex.run(~r/^#.*$/, line) do
-      nil -> {line, tokens}
-      [token_match | _] ->
-        {String.replace(line, token_match, "", global: false),
-        html(token_match, "comment", [{token_match, "comment"} | tokens])}
-    end
-  end
-
-  defp string(line, tokens) do
-    case Regex.run(~r/(['"])(?:(?!\1).)*\1/, line) do
-      nil -> {line, tokens}
-      [token_match | _] ->
-        {String.replace(line, token_match, "", global: false),
-        html(token_match, "string", [{token_match, "string"} | tokens])}
-    end
-  end
-
-
-  defp punctuator(line, tokens) do
-    case Regex.run(~r/^[\[\](){}:,\]]/, line) do
-      nil -> {line, tokens}
-      [token_match | _] ->
-        {String.replace(line, token_match, "", global: false),
-        html(token_match, "punctuator", [{token_match, "punctuator"} | tokens])}
-    end
-  end
-
-
 
   defp html(token, token_type, tokens) do
     token_html = "<span class=\"#{token_type}\">#{token}</span>\n"
