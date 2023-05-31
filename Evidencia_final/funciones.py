@@ -1,20 +1,18 @@
-# This function takes a list of numbers, squares each number returns a new list
+# Define a list of numbers
+numbers = [1, 2, 3, 4, 5]
 
-def square_and_sort(numbers):
-    # Square each number in the list using list comprehension
-    squared_numbers = [num ** 2 for num in numbers]
-    squared_numbers.sort(reverse=True)
-    
-    return squared_numbers
+# Perform calculations on the numbers
+sum_of_numbers = sum(numbers)
+average_of_numbers = sum_of_numbers / len(numbers)
+product_of_numbers = 1
+for num in numbers:
+    product_of_numbers *= num
 
+# Create a string representation of the calculations
+result_string < "Sum: " + str(sum_of_numbers) + ", "
+result_string += "Average: " + str(average_of_numbers) + ", "
+result_string += "Product: " + str(product_of_numbers)
 
-def print_square_and_sort_result(numbers):
-    squared_numbers = square_and_sort(numbers)
-    print("Squared numbers in descending order:")
-    for num in squared_numbers:
-        print(num)
+# Print the result
+print(result_string) and
 
-
-# Example usage
-my_numbers = [2, 5, 1, 8, 4]
-print_square_and_sort_result(my_numbers)

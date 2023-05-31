@@ -22,7 +22,7 @@
     color: #FFD700; 
 }
 
-.assignment_operator {
+.assigment_operator {
     color: #DC143C; 
 }
 
@@ -30,26 +30,14 @@
     color: #FF69B4; 
 }
 
-.open_bra {
-    color: #4B0082; 
+.punctuator {
+    color: #067274; 
 }
 
-.close_bra {
-    color: #4B0082; 
+.parameters {
+    color: #c26083; 
 }
 
-.open_key {
-    color: #B22222; 
-}
-
-.close_key {
-    color: #B22222; 
-}
-
-.open_par {
-    color: #2E8B57; 
-}
-
-.close_par {
-    color: #2E8B57; 
+.string {
+    color: #c26083; 
 }

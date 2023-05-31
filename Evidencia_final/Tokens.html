@@ -8,79 +8,155 @@
     <link rel="stylesheet" type="text/css" href="tokens.css">
 </head>
 <body>
-<span class="comment"># This function takes a list of numbers, squares each number returns a new list</span>
-<br><br><span class="reserved_word">def</span>
-<span class="open_par">(</span>
-<span class="identifier">square_and_sortnumbers</span>
-<span class="assigment_operator">:</span>
-<span class="close_par">)</span>
-<br><span class="identifier">Square</span>
-<span class="identifier">each</span>
-<span class="identifier">number</span>
-<span class="identifier">in</span>
-<span class="identifier">the</span>
-<span class="identifier">list</span>
-<span class="identifier">using</span>
-<span class="identifier">list</span>
-<span class="identifier">comprehension</span>
-<br><span class="reserved_word">for</span>
-<span class="open_bra">[</span>
-<span class="identifier">squared_numbers</span>
-<span class="number">2</span>
-<span class="arithmetic_operator">*</span>
+<span class="comment"># Define a list of numbers</span>
+<span class="space">
+</span>
+<br><span class="identifier">numbers</span>
+<span class="space"> </span>
 <span class="assigment_operator">=</span>
-<span class="close_bra">]</span>
-<span class="identifier">num</span>
-<span class="arithmetic_operator">*</span>
-<span class="identifier">num</span>
-<span class="identifier">in</span>
-<span class="identifier">numbers</span>
-<br><span class="open_par">(</span>
-<span class="identifier">squared_numbers</span>
-<span class="assigment_operator">=</span>
-<span class="close_par">)</span>
-<span class="identifier">sortreverseTrue</span>
-<br><br><span class="reserved_word">return</span>
-<span class="identifier">squared_numbers</span>
-<br><br><br><span class="reserved_word">def</span>
-<span class="open_par">(</span>
-<span class="identifier">print_square_and_sort_resultnumbers</span>
-<span class="assigment_operator">:</span>
-<span class="close_par">)</span>
-<br><span class="open_par">(</span>
-<span class="identifier">squared_numbers</span>
-<span class="assigment_operator">=</span>
-<span class="close_par">)</span>
-<span class="identifier">square_and_sortnumbers</span>
-<br><span class="reserved_word">print</span>
-<span class="open_par">(</span>
-<span class="identifier">Squared</span>
-<span class="assigment_operator">:</span>
-<span class="close_par">)</span>
-<span class="identifier">numbers</span>
-<span class="identifier">in</span>
-<span class="identifier">descending</span>
-<span class="identifier">order</span>
-<br><span class="reserved_word">for</span>
-<span class="identifier">num</span>
-<span class="assigment_operator">:</span>
-<span class="identifier">in</span>
-<span class="identifier">squared_numbers</span>
-<br><span class="reserved_word">print</span>
-<span class="open_par">(</span>
-<span class="identifier">num</span>
-<span class="close_par">)</span>
-<br><br><br><span class="comment"># Example usage</span>
-<br><span class="open_bra">[</span>
-<span class="identifier">my_numbers</span>
-<span class="number">2</span>
-<span class="assigment_operator">=</span>
-<span class="close_bra">]</span>
-<span class="number">5</span>
+<span class="space"> </span>
+<span class="punctuator">[</span>
 <span class="number">1</span>
-<span class="number">8</span>
+<span class="punctuator">,</span>
+<span class="space"> </span>
+<span class="number">2</span>
+<span class="punctuator">,</span>
+<span class="space"> </span>
+<span class="number">3</span>
+<span class="punctuator">,</span>
+<span class="space"> </span>
 <span class="number">4</span>
-<br><span class="open_par">(</span>
-<span class="identifier">print_square_and_sort_resultmy_numbers</span>
-<span class="close_par">)</span>
+<span class="punctuator">,</span>
+<span class="space"> </span>
+<span class="number">5</span>
+<span class="punctuator">]</span>
+<span class="space">
+</span>
+<br><span class="space">
+</span>
+<br><span class="comment"># Perform calculations on the numbers</span>
+<span class="space">
+</span>
+<br><span class="identifier">sum_of_numbers</span>
+<span class="space"> </span>
+<span class="assigment_operator">=</span>
+<span class="space"> </span>
+<span class="identifier">sum</span>
+<span class="punctuator">(</span>
+<span class="identifier">numbers</span>
+<span class="punctuator">)</span>
+<span class="space">
+</span>
+<br><span class="identifier">average_of_numbers</span>
+<span class="space"> </span>
+<span class="assigment_operator">=</span>
+<span class="space"> </span>
+<span class="identifier">sum_of_numbers</span>
+<span class="space"> </span>
+<span class="arithmetic_operator">/</span>
+<span class="space"> </span>
+<span class="reserved_word">len</span>
+<span class="punctuator">(</span>
+<span class="identifier">numbers</span>
+<span class="punctuator">)</span>
+<span class="space">
+</span>
+<br><span class="identifier">product_of_numbers</span>
+<span class="space"> </span>
+<span class="assigment_operator">=</span>
+<span class="space"> </span>
+<span class="number">1</span>
+<span class="space">
+</span>
+<br><span class="reserved_word">for</span>
+<span class="space"> </span>
+<span class="identifier">num</span>
+<span class="space"> </span>
+<span class="identifier">in</span>
+<span class="space"> </span>
+<span class="identifier">numbers</span>
+<span class="punctuator">:</span>
+<span class="space">
+</span>
+<br><span class="space"> </span>
+<span class="space"> </span>
+<span class="space"> </span>
+<span class="space"> </span>
+<span class="identifier">product_of_numbers</span>
+<span class="space"> </span>
+<span class="assigment_operator">*=</span>
+<span class="space"> </span>
+<span class="identifier">num</span>
+<span class="space">
+</span>
+<br><span class="space">
+</span>
+<br><span class="comment"># Create a string representation of the calculations</span>
+<span class="space">
+</span>
+<br><span class="identifier">result_string</span>
+<span class="space"> </span>
+<span class="string">"Sum: "</span>
+<span class="comparison_operator"><</span>
+<span class="space"> </span>
+<span class="string">", "</span>
+<span class="space"> </span>
+<span class="arithmetic_operator">+</span>
+<span class="space"> </span>
+<span class="reserved_word">str</span>
+<span class="punctuator">(</span>
+<span class="identifier">sum_of_numbers</span>
+<span class="punctuator">)</span>
+<span class="space"> </span>
+<span class="arithmetic_operator">+</span>
+<span class="space"> </span>
+<span class="space">
+</span>
+<br><span class="identifier">result_string</span>
+<span class="space"> </span>
+<span class="string">"Average: "</span>
+<span class="assigment_operator">+=</span>
+<span class="space"> </span>
+<span class="string">", "</span>
+<span class="space"> </span>
+<span class="arithmetic_operator">+</span>
+<span class="space"> </span>
+<span class="reserved_word">str</span>
+<span class="punctuator">(</span>
+<span class="identifier">average_of_numbers</span>
+<span class="punctuator">)</span>
+<span class="space"> </span>
+<span class="arithmetic_operator">+</span>
+<span class="space"> </span>
+<span class="space">
+</span>
+<br><span class="identifier">result_string</span>
+<span class="space"> </span>
+<span class="string">"Product: "</span>
+<span class="assigment_operator">+=</span>
+<span class="space"> </span>
+<span class="space"> </span>
+<span class="arithmetic_operator">+</span>
+<span class="space"> </span>
+<span class="reserved_word">str</span>
+<span class="punctuator">(</span>
+<span class="identifier">product_of_numbers</span>
+<span class="punctuator">)</span>
+<span class="space">
+</span>
+<br><span class="space">
+</span>
+<br><span class="comment"># Print the result</span>
+<span class="space">
+</span>
+<br><span class="reserved_word">print</span>
+<span class="punctuator">(</span>
+<span class="identifier">result_string</span>
+<span class="punctuator">)</span>
+<span class="space"> </span>
+<span class="logical_operator">and</span>
+<span class="space">
+</span>
+<br><span class="space">
+</span>
 <br></body></html>
