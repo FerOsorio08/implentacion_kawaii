@@ -22,7 +22,7 @@ defmodule Resaltador_syntaxys do
     <span class="boolean">boolean</span><br>
     <span class="identifier">identifier</span><br>
     <span class="number">number</span><br>
-    <span class="assignment_operator">assigment_operator</span><br>
+    <span class="assigment_operator">assigment_operator</span><br>
     <span class="comparison_operator">comparison_operator</span><br>
     <span class="arithmetic_operator">arithmetic_operator</span><br>
     <span class="punctuator">punctuator</span><br>
@@ -38,12 +38,15 @@ dropdown.addEventListener("mouseleave", function() {
   this.getElementsByClassName("dropdown-content")[0].style.display = "none";
 });
 </script>
+<pre>
 """)
 
 
 
     file_path
       |> File.stream!()
+      # Remove trailing
+      |>Enum.map(&String.trim_trailing/1)
       |> Stream.map(&process_line/1)
       |> Enum.to_list()
 
@@ -102,5 +105,5 @@ end
 
 
 tokens = Resaltador_syntaxys.resaltador("./funciones.py")
-File.write("./Tokens.html", "</body></html>\n" , [:append])
+File.write("./Tokens.html", "</pre></body></html>\n" , [:append])
 IO.inspect(tokens)
