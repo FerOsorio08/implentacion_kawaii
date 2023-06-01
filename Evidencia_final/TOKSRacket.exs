@@ -17,6 +17,7 @@ defmodule Resaltador_syntaxys do
 
     file_path
       |> File.stream!()
+      |>Enum.map(&String.trim_trailing/1)
       |> Stream.map(&process_line/1)
       |> Enum.to_list()
 
@@ -71,20 +72,49 @@ defmodule Resaltador_syntaxys do
       File.write("./Tokens_racket.html", "")
       File.write("./Tokens_racket.html", """
       <!DOCTYPE html>
-      <html lang="en">
-      <head>
-          <meta charset="UTF-8">
-          <meta http-equiv="X-UA-Compatible" content="IE=edge">
-          <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Document</title>
-          <link rel="stylesheet" type="text/css" href="tokens.css">
-      </head>
-      <body>
-      """)
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" type="text/css" href="tokens.css">
+</head>
+<body>
+<div class = "dropdown"> <div class="butt_container"><button class = "button">TOKEN MENU</button></div>
+  <div class="dropdown-content">
+    <span class="special_word">Special word</span><br>
+    <span class="reserved_word">reserved_word</span><br>
+    <span class="logical_operator">logical_operator</span><br>
+    <span class="comment">comment</span><br>
+    <span class="racket_methods">racket_methods</span><br>
+    <span class="boolean">boolean</span><br>
+    <span class="identifier">identifier</span><br>
+    <span class="number">number</span><br>
+    <span class="assigment_operator">assigment_operator</span><br>
+    <span class="comparison_operator">comparison_operator</span><br>
+    <span class="arithmetic_operator">arithmetic_operator</span><br>
+    <span class="punctuator">punctuator</span><br>
+    <span class="character_line">character line</span><br>
+    <span class="character_literal">character literal</span><br>
+  </div>
+</div>
+<script>
+// JavaScript code to handle the dropdown functionality
+var dropdown = document.getElementsByClassName("dropdown")[0];
+dropdown.addEventListener("mouseenter", function() {
+  this.getElementsByClassName("dropdown-content")[0].style.display = "block";
+});
+dropdown.addEventListener("mouseleave", function() {
+  this.getElementsByClassName("dropdown-content")[0].style.display = "none";
+});
+</script>
 
+""")
 
       file_path
         |> File.stream!()
+        |> Enum.map(&String.trim_trailing/1)
         |> Stream.map(&process_line_racket/1)
         |> Enum.to_list()
 
@@ -146,7 +176,7 @@ end
 
 
 # tokens = Resaltador_syntaxys.resaltador("./funciones.py")
-# File.write("./Tokens.html", "</body></html>\n" , [:append])
+# File.write("./Tokens.html", "</pre></body></html>\n" , [:append])
 # IO.inspect(tokens)
 
 tokens_racket = Resaltador_syntaxys.resaltador_racket("./funciones.rkt")

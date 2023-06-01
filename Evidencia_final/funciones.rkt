@@ -147,3 +147,4 @@
        [(eq? char #\() (values 'op_par #f)]
        [(eq? char #\)) (values 'close_par #f)]
        [else (values 'inv #f)])]
+(define result (arithmetic-lexer ")( D = (a ^ B + 4 + 10 / 9 "))
