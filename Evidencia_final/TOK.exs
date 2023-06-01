@@ -1,4 +1,5 @@
 defmodule Resaltador_syntaxys do
+  # This function takes python file path as parameter and is used to highlight various tokens of provided file in html format.
   def resaltador(file_path) do
     File.write("./Tokens.html", "")
 
@@ -50,6 +51,7 @@ defmodule Resaltador_syntaxys do
     |> Enum.to_list()
   end
 
+  # This function takes a line of text as input, finds any tokens (words or symbols) in it and appends them to an empty list.
   defp process_line(line) do
     token_finder(line, [])
     File.write("./Tokens.html", "<br>", [:append])
@@ -57,6 +59,7 @@ defmodule Resaltador_syntaxys do
 
   defp token_finder("", tokens), do: Enum.reverse(tokens)
 
+  # This is a private helper function, which is used to tokenize different types of tokens in provided line.
   defp token_finder(line, tokens) do
     {line, tokens} =
       tokenize(
@@ -95,6 +98,7 @@ defmodule Resaltador_syntaxys do
     if line == "", do: Enum.reverse(tokens), else: token_finder(line, tokens)
   end
 
+  # This is a private helper function which is used to tokenize a single token from the line.
   defp tokenize(line, tokens, regex, token_type) do
     case Regex.run(regex, line) do
       nil ->
@@ -106,12 +110,14 @@ defmodule Resaltador_syntaxys do
     end
   end
 
+  # This is a private helper function which converts the given token into its HTML representation with span class 'token_type'.
   defp html(token, token_type, tokens) do
     token_html = "<span class=\"#{token_type}\">#{token}</span>"
     File.write("./Tokens.html", token_html, [:append])
     tokens
   end
 
+    # This function takes racket file path as parameter and is used to highlight various tokens of provided file in html format.
   def resaltador_racket(file_path) do
     File.write("./Tokens_racket.html", "")
 
@@ -164,13 +170,16 @@ defmodule Resaltador_syntaxys do
     |> Enum.to_list()
   end
 
+  # This function takes a line of racket text as input, finds any tokens (words or symbols) in it and appends them to an empty list.
   defp process_line_racket(line) do
     token_finder_racket(line, [])
     File.write("./Tokens_racket.html", "<br>", [:append])
   end
 
+  # This is a private helper function which is used to terminate the recursion and return the final result.
   defp token_finder_racket("", tokens), do: Enum.reverse(tokens)
 
+  # This is a private helper function, which is used to tokenize different types of tokens in provided line.
   defp token_finder_racket(line, tokens) do
     {line, tokens} = tokenize_racket(line, tokens, ~r/(^#lang)\b/, "special_word")
 
@@ -230,6 +239,7 @@ defmodule Resaltador_syntaxys do
     if line == "", do: Enum.reverse(tokens), else: token_finder_racket(line, tokens)
   end
 
+  # This is a private helper function, which is used to tokenize different types of tokens in provided line.
   defp tokenize_racket(line, tokens, regex, token_type) do
     case Regex.run(regex, line) do
       nil ->
@@ -241,12 +251,12 @@ defmodule Resaltador_syntaxys do
     end
   end
 
+  # This is a private helper function, which is used to append the token to the list of tokens.
   defp html_racket(token, token_type, tokens) do
     token_racket = "<span class=\"#{token_type}\">#{token}</span>\n"
     File.write("./Tokens_racket.html", token_racket, [:append])
     tokens
   end
-
 end
 
 # SELECCIÓ DE LENGUAJE
