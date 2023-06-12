@@ -18,36 +18,54 @@ defmodule Concur do
     IO.puts("MAIN THREAD FINISING")
   end
 
-  def main2()do
+  def main2() do
     IO.puts("MAIN THREAD STARTING")
     # Create new process
-    ["One","Two","Three","Four"]
-    |> Enum.map(&Task.async(fn -> test_function(&1)end))
+    ["One", "Two", "Three", "Four"]
+    |> Enum.map(&Task.async(fn -> test_function(&1) end))
     |> IO.inspect()
     |> Enum.map(&Task.await(&1))
     |> IO.inspect()
+
     IO.puts("MAIN THREAD FINISING")
   end
 end
 
+# This module is named Sums
 defmodule Sums do
+  # Define the function range_sum with input {start, finish}
   def range_sum({start, finish}) do
-    Enum.sum(start .. finish)
+    # Produces the sum of the range provided as input ({start..finish})
+    Enum.sum(start..finish)
   end
 
-  def make_ranges(start, finish, cores)do
-    #Create list of tuples to send to the function
-    [{100,200},{201,300},{301,400},{401,500}]
+  # Define the function make_ranges with inputs start, finish and cores
+  def make_ranges(start, finish, cores) do
+    # Creates a list of tuples, in this case a hardcoded example
+    [{100, 200}, {201, 300}, {301, 400}, {401, 500}]
   end
 
+  # Define the function total_sum with inputs start, finish and cores
   def total_sum(start, finish, cores) do
+    # Prints out a message indicating the "MAIN THREAD STARTING"
     IO.puts("MAIN THREAD STARTING")
-    make_ranges(start,finish,cores)
-    |>Enum.map(&Task.async(fn -> range_sum(&1)end))
+
+    # Calls the function make_ranges with the inputs start, finish and cores to build a list of tuples.
+    make_ranges(start, finish, cores)
+
+    # Maps each element in the list of tuples to create a task which asynchronously calls the function given by range_sum passing in the current tuple.
+    |> Enum.map(&Task.async(fn -> range_sum(&1) end))
+
+    # Outputs the results to the console
     |> IO.inspect()
+
+    # Waits for completion of all asynchronous tasks
     |> Enum.map(&Task.await(&1))
-    |>IO.inspect()
+
+    # Outputs the results to the console
+    |> IO.inspect()
+
+    # Prints out a message indicating "FINISHED MAIN THREAD"
     IO.puts("FINISHED MAIN THREAD")
   end
-
 end
