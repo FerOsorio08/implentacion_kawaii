@@ -1,4 +1,4 @@
-
+sum
 defmodule Hw.Primes do
   defp prime(n) when n < 2, do: false
 

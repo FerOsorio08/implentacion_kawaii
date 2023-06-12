@@ -92,7 +92,7 @@ defmodule Resaltador_syntaxys do
     {line, tokens} =
       tokenize(line, tokens, ~r/^\+|^-|^\*|^\/|^%|^\*\*|^\/\//, "arithmetic_operator")
 
-    {line, tokens} = tokenize(line, tokens, ~r/^[\[\](){}:,.\]]/, "punctuator")
+    {line, tokens} = tokenize(line, tokens, ~r/^[\[\](){}:,.&\]]/, "punctuator")
     {line, tokens} = tokenize(line, tokens, ~r/(^['"])(?:(?!\1).)*\1/, "string")
 
     if line == "", do: Enum.reverse(tokens), else: token_finder(line, tokens)
@@ -264,6 +264,6 @@ tokens = Resaltador_syntaxys.resaltador("./funciones.py")
 File.write("./Tokens.html", "</pre></body></html>\n", [:append])
 IO.inspect(tokens)
 
-tokens_racket = Resaltador_syntaxys.resaltador_racket("./funciones.rkt")
-File.write("./Tokens_racket.html", "</body></html>\n", [:append])
-IO.inspect(tokens_racket)
+# tokens_racket = Resaltador_syntaxys.resaltador_racket("./funciones.rkt")
+# File.write("./Tokens_racket.html", "</body></html>\n", [:append])
+# IO.inspect(tokens_racket)
