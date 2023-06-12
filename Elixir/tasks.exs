@@ -35,9 +35,14 @@ defmodule Sums do
     Enum.sum(start .. finish)
   end
 
-  def total_sum(start, finish) do
-    IO.puts("MAIN THREAD STARTING")
+  def make_ranges(start, finish, cores)do
+    #Create list of tuples to send to the function
     [{100,200},{201,300},{301,400},{401,500}]
+  end
+
+  def total_sum(start, finish, cores) do
+    IO.puts("MAIN THREAD STARTING")
+    make_ranges(start,finish,cores)
     |>Enum.map(&Task.async(fn -> range_sum(&1)end))
     |> IO.inspect()
     |> Enum.map(&Task.await(&1))
