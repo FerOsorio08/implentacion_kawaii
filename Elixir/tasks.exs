@@ -69,3 +69,6 @@ defmodule Sums do
     IO.puts("FINISHED MAIN THREAD")
   end
 end
+
+# timer.pc(fn -> funcion_a_medir end), esta en microsegundos
+# timer.tc(fn -> Sums.total_sum(1,1,1)end) |> elem(0) |> Kernel./(1_000_000)

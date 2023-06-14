@@ -1,4 +1,3 @@
-sum
 defmodule Hw.Primes do
   defp prime(n) when n < 2, do: false
 
@@ -15,46 +14,36 @@ defmodule Hw.Primes do
     Enum.sum(for n <- 2..limit, prime(n), do: n)
   end
 
-  def make_threads(limit, threads) do
+  def sum_primes_parallel(limit, num_threads) do
+    IO.puts("MAIN THREAD STARTING")
 
-  end
+    # Split into chunks using Enum.chunk_every
+    # remove any non-prime values from each chunk
+    tasks =
+      1..limit
+      |> Enum.filter(&prime/1)
+      # Chunking for parallel threads
+      |> Enum.chunk_every(div(limit, num_threads))
+      # Using map to process them in parallel
+      |> Enum.map(fn chunk ->
+        Task.async(fn ->
+          # Perform prime in every number in chunk
+          Enum.map(chunk, fn prime ->
+            IO.puts("THREAD STARTING FOR #{prime}")
+            result = prime
+            IO.puts("THREAD FINISHED FOR #{prime}")
+            # Return value
+            result
+          end)
+        end)
+      end)
+      |> IO.inspect()
 
-  def sum_primes_parallel(limit, threads) do
+    # Wait for all the tasks to complete and collect their results.
+    #Enum.flat_map flattnes the list of lists
+    primes = tasks |> Enum.flat_map(&Task.await/1)
 
-
-
-  end
-
-
-end
-
-
-
-defmodule Hw.Primes do
-  def total_sum(ranges) do
-    ranges
-    |> Enum.map(&Task.async(fn -> range_sum(&1) end))
-    |> Enum.map(&Task.await(&1))
-    |> Enum.sum()
-  end
-
-  def range_sum({start, finish}) do
-    start..finish
-    |> Enum.filter(&is_prime/1)
-    |> Enum.sum()
-  end
-
-  defp is_prime(num) when num < 2, do: false
-  defp is_prime(2), do: true
-  defp is_prime(num) do
-    factors = Enum.filter(2..(num - 1), fn x -> rem(num, x) == 0 end)
-    Enum.empty?(factors)
+    # Sum the primes
+    Enum.sum(primes)
   end
 end
-
-IO.inspect(Hw.Primes.total_sum([{100, 200}, {201, 300}, {301, 400}, {401, 500}])) # Output: 2944 (sum of prime numbers within the specified ranges)
-IO.inspect(Hw.Primes.total_sum([{1, 10}]))       # Output: 17 (sum of prime numbers from 1 to 10)
-IO.inspect(Hw.Primes.total_sum([{1, 100}]))      # Output: 1060 (sum of prime numbers from 1 to 100)
-IO.inspect(Hw.Primes.total_sum([{1, 1000}]))     # Output: 76127 (sum of prime numbers from 1 to 1000)
-IO.inspect(Hw.Primes.total_sum([{1, 10000}]))    # Output: 5736396 (sum of prime numbers from 1 to 10000)
-IO.inspect(Hw.Primes.total_sum([{100, 500}]))    # Output: 20476 (sum of prime numbers from 100 to 500)
