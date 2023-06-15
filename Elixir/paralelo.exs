@@ -1,3 +1,9 @@
+# ACtividad Actividad 5.2 Programación paralela y concurrente
+#Emilia Salazar
+#Ian Holender
+#Fernanda Osorio
+#05-junio-2023
+
 import :timer
 defmodule Hw.Primes do
   defp prime(n) when n < 2, do: false

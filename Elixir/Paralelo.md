@@ -1,5 +1,10 @@
 # Actividad 6.1 Análisis de herramientas usadas para la solución de las situaciones problema
 
+Emilia Salazar
+Ian Holender
+Fernanda Osorio
+05 de junio de 2023
+
 La solución de esta actividad se realizó con elixir. 
 Las funciones: 
 - sum_primes
