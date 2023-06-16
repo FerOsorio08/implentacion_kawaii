@@ -78,6 +78,7 @@ Es en este tipo de ejemplos en los que incluso la más diminuta diferencia y mej
 
 Aquí entra también la aplicación ética de algoritmos como este. En realidad el uso de HFT es muy controversial ya que se considera que es injusto para los traders que no tienen acceso a este tipo de algoritmos. Esto demuestra la gran responsabilidad que represneta el desarrollar y el usar este tipo de tecnologías como ventajas o desventajas en el mundo actual.
 
+Agradecemos este tipo de actividades ya que nos permiten aplicar practicamente los conceptos que aprendemos en clase. De la misma manera facilita el aprendizaje y la comprensión de estos conceptos; asi como la importancia de saber donde y cuando aplicarlos o no. 
 
 
 
