@@ -1,13 +1,18 @@
 #Código de Emilia Salazar, Fernanda Osorio e Ian Holender
 defmodule Resaltador_syntaxys do
-#Esta primera función lo que hace es una vez que recibe los archivos de python, separa el archivo para tomar como argumento el nombre del archivo antes del .py y posteriormente crea un archivo que se llama de la misma manera pero es html. Después llama la función de proccess_file pasando los parámetros de las direcciones de los dos archivos.
+
+# Esta primera función lo que hace es una vez que recibe los archivos de python, separa el archivo para tomar como
+# argumento el nombre del archivo antes del .py y posteriormente crea un archivo que se llama de la misma manera pero es html.
+#Después llama la función de proccess_file pasando los parámetros de las direcciones de los dos archivos.
   def resaltador(file_path) do
     base_name = Path.basename(file_path, ".py")
     html_file_path = "./#{base_name}.html"
     process_file(file_path, html_file_path)
   end
 
-  #Process file lo que hace es escribir en el html el texto que va hasta el principio, después lee el archivo de python y llama a la función de process line y posteriormente los tokens que se vayan encontrando a lo largo de la función los escribe en el archivo de html. Dinalmente termina el documento de html con los closing tags.
+  # Process file lo que hace es escribir en el html el texto que va hasta el principio,
+  # después lee el archivo de python y llama a la función de process line y posteriormente los tokens que se vayan encontrando a lo largo
+  # de la función los escribe en el archivo de html. Dinalmente termina el documento de html con los closing tags.
   defp process_file(file_path, html_file) do
     write_header(html_file)
     file_path
@@ -78,7 +83,8 @@ defmodule Resaltador_syntaxys do
   end
 
 
-#Esta función buca los tokens al inicio de la linea y se llama de manera recursiva hasta que ya no haya más tokens en la línea. Finnalmente regresa una tupla con la token encontrada y el tipo de token que es.
+# Esta función buca los tokens al inicio de la linea y se llama de manera recursiva hasta que ya no haya más tokens en la línea.
+# Finalmente regresa una tupla con la token encontrada y el tipo de token que es.
   defp token_finder("", tokens), do: Enum.reverse(tokens)
   defp token_finder(line, tokens) do
     {line, tokens} = tokenize(line,tokens,~r/(^if|^else|^elif|^while|^for|^print|^return|^len|^str|^def|^import|^class|^try|^except|^break)\b/,"reserved_word")
@@ -98,7 +104,8 @@ defmodule Resaltador_syntaxys do
   end
 
 
-#Esta función recibe la línea que se está leyendo, la expresión regular y el tipo de tokens y lo que hace es llamar a la función html con cada token encontrado para que se escriba correctamente en el documento.
+# Esta función recibe la línea que se está leyendo, la expresión regular y el tipo de tokens y lo que hace es llamar a
+# la función html con cada token encontrado para que se escriba correctamente en el documento.
   defp tokenize(line, tokens, regex, token_type) do
     case Regex.run(regex, line) do
       nil ->
@@ -128,7 +135,8 @@ defmodule Resaltador_syntaxys do
     Enum.map(tasks, &Task.await/1)
   end
 
-#Esta función recibe la dirección de el folder donde están los archivos de python a inspeccionar y busca todos los que terminen con .py y los manda a resaltador multiple para que se tokenizen todos.
+#Esta función recibe la dirección de el folder donde están los archivos de python a inspeccionar y busca todos los que terminen
+# con .py y los manda a resaltador multiple para que se tokenizen todos.
   def resaltador_directory(dir_path) do
     file_paths = Path.wildcard("#{dir_path}/*.py")
     resaltador_multiple_files(file_paths)
