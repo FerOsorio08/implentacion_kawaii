@@ -11,7 +11,7 @@ defmodule Resaltador_syntaxys do
       <meta http-equiv="X-UA-Compatible" content="IE=edge">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Document</title>
-      <link rel="stylesheet" type="text/css" href="tokens.css">
+      <link rel="stylesheet" type="text/css" href="Tokens.css">
     </head>
     <body>
     <div class = "dropdown"> <div class="butt_container"><button class = "button">TOKEN MENU</button></div>
@@ -257,13 +257,39 @@ defmodule Resaltador_syntaxys do
     File.write("./Tokens_racket.html", token_racket, [:append])
     tokens
   end
+
+
+  def resaltador_multiple_files(file_paths) do
+    tasks = Enum.map(file_paths, fn file_path ->
+      Task.async(fn -> resaltador(file_path) end)
+    end)
+
+    Enum.map(tasks, &Task.await/1)
+  end
+
+  def resaltador_racket_multiple_files(file_paths) do
+    tasks = Enum.map(file_paths, fn file_path ->
+      Task.async(fn -> resaltador_racket(file_path) end)
+    end)
+
+    Enum.map(tasks, &Task.await/1)
+  end
 end
 
-# SELECCIÓ DE LENGUAJE
+
+# # SELECCIÓ DE LENGUAJE
 tokens = Resaltador_syntaxys.resaltador("./funciones.py")
 File.write("./Tokens.html", "</pre></body></html>\n", [:append])
 IO.inspect(tokens)
 
-# tokens_racket = Resaltador_syntaxys.resaltador_racket("./funciones.rkt")
-# File.write("./Tokens_racket.html", "</body></html>\n", [:append])
-# IO.inspect(tokens_racket)
+# # tokens_racket = Resaltador_syntaxys.resaltador_racket("./funciones.rkt")
+# # File.write("./Tokens_racket.html", "</body></html>\n", [:append])
+# # IO.inspect(tokens_racket)
+
+# file_paths = ["./funciones.py","./funciones1.py", "./funciones2.py", "./funciones3.py"]
+# tokens = Resaltador_syntaxys.resaltador_multiple_files(file_paths)
+# Enum.each(tokens, &IO.inspect/1)
+
+# file_paths_racket = ["./funciones1.rkt", "./funciones2.rkt", "./funciones3.rkt"]
+# tokens_racket = Resaltador_syntaxys.resaltador_racket_multiple_files(file_paths_racket)
+# Enum.each(tokens_racket, &IO.inspect/1)
