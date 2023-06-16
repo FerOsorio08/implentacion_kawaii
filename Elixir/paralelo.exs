@@ -83,17 +83,8 @@ defmodule Hw.Primes do
 
 end
 
-defmodule Timing do
-  def time_execution(fun) do
-    :timer.tc(fun)
-    # Get the time in microseconds
-    |> elem(0)
-    # Convert to seconds
-    |> Kernel./(1_000_000)
-    |> IO.inspect(label: "Time in seconds")
-  end
-end
+
 
 IO.inspect(Hw.Primes.sum_primes(12))
 IO.inspect(Hw.Primes.sum_primes_parallel(12,3))
-IO.inspect(Timing.time_execution(fn -> IO.inspect(Hw.Primes.sum_primes(12))end))
+IO.inspect(fn -> IO.inspect(Hw.Primes.sum_primes(12))end)
