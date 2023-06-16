@@ -41,7 +41,7 @@ Usando la formula
 
 $$ S_{p} = \frac{T_1}{T_{p}} $$
 
-EL *speed up* es $$ \frac{0.507}{0.00160} = \frac{2535}{8} $$ o 316.875. 
+EL *speed up* es $$ \frac{0.507}{0.00160} = \frac{2535}{8} = 316.875 $$ 
 
 Eso muestra que la mejora en tiempo de ejecición es no solamente muy notable sino que también reduce procesos innecesarios. 
 A pesar de que ambas soluciones estan correctas y llevan acabo sus procesos de manera pareciera "similar", factores como el tiempo de ejecución revelan la verdad detrás de estas diferentes programaciones.
