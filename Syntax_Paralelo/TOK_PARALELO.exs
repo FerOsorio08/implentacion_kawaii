@@ -3,7 +3,7 @@ defmodule Resaltador_syntaxys do
 
 # Esta primera función lo que hace es una vez que recibe los archivos de python, separa el archivo para tomar como
 # argumento el nombre del archivo antes del .py y posteriormente crea un archivo que se llama de la misma manera pero es html.
-#Después llama la función de proccess_file pasando los parámetros de las direcciones de los dos archivos.
+# Después llama la función de proccess_file pasando los parámetros de las direcciones de los dos archivos.
   def resaltador(file_path) do
     base_name = Path.basename(file_path, ".py")
     html_file_path = "./#{base_name}.html"
@@ -11,8 +11,8 @@ defmodule Resaltador_syntaxys do
   end
 
   # Process file lo que hace es escribir en el html el texto que va hasta el principio,
-  # después lee el archivo de python y llama a la función de process line y posteriormente los tokens que se vayan encontrando a lo largo
-  # de la función los escribe en el archivo de html. Dinalmente termina el documento de html con los closing tags.
+  # después lee el archivo de python y llama a la función de process line y posteriormente los tokens que se vayan encontrando
+  # a lo largo de la función los escribe en el archivo de html. Dinalmente termina el documento de html con los closing tags.
   defp process_file(file_path, html_file) do
     write_header(html_file)
     file_path
@@ -135,7 +135,7 @@ defmodule Resaltador_syntaxys do
     Enum.map(tasks, &Task.await/1)
   end
 
-#Esta función recibe la dirección de el folder donde están los archivos de python a inspeccionar y busca todos los que terminen
+# Esta función recibe la dirección de el folder donde están los archivos de python a inspeccionar y busca todos los que terminen
 # con .py y los manda a resaltador multiple para que se tokenizen todos.
   def resaltador_directory(dir_path) do
     file_paths = Path.wildcard("#{dir_path}/*.py")
