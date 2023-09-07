@@ -4,11 +4,4 @@ import {spanishMessages} from './spanishMessages';
 
 export const i18nProvider = polyglotI18nProvider(
     locale => spanishMessages, 'es'
-    // translate: key => lodashGet(messages, key),
-    // changeLocale: newLocale => {
-    //     messages = (newLocale === 'fr') ? frenchMessages : englishMessages;
-    //     locale = newLocale;
-    //     return Promise.resolve();
-    // },
-    // getLocale: () => locale
 );
